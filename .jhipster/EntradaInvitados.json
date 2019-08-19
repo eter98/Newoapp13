@@ -1,0 +1,70 @@
+{
+    "name": "EntradaInvitados",
+    "fields": [
+        {
+            "fieldName": "registroFecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "tipoEntrada",
+            "fieldType": "TipoEntradad",
+            "fieldValues": "INGRESO,SALIDA"
+        },
+        {
+            "fieldName": "tipoIngreso",
+            "fieldType": "TipoIngresod",
+            "fieldValues": "Espacio_Libre,Reserva,Oficina"
+        },
+        {
+            "fieldName": "tiempoMaximo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "espacioLibre",
+            "otherEntityRelationshipName": "entradaInvitados",
+            "relationshipName": "espacio",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "landing",
+            "otherEntityRelationshipName": "entradaInvitados",
+            "relationshipName": "oficina",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "espaciosReserva",
+            "otherEntityRelationshipName": "entradaInvitados",
+            "relationshipName": "espacioReserva",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "invitados",
+            "otherEntityRelationshipName": "entradaInvitados",
+            "relationshipName": "invitado",
+            "otherEntityField": "identificacion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "entradaInvitados",
+            "relationshipName": "miembro",
+            "otherEntityField": "identificacion"
+        }
+    ],
+    "changelogDate": "20190819194532",
+    "entityTableName": "entrada_invitados",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

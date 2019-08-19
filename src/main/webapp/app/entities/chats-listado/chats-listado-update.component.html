@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-chats-listado-heading" jhiTranslate="newoApp13App.chatsListado.home.createOrEditLabel">Create or edit a Chats Listado</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.descripcion" for="field_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                           formControlName="descripcion"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.estatus" for="field_estatus">Estatus</label>
+                    <select class="form-control" name="estatus" formControlName="estatus" id="field_estatus">
+                        <option value="EnLinea">{{'newoApp13App.Estatusd.EnLinea' | translate}}</option>
+                        <option value="Desconectado">{{'newoApp13App.Estatusd.Desconectado' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.count" for="field_count">Count</label>
+                    <input type="number" class="form-control" name="count" id="field_count"
+                           formControlName="count"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.badge" for="field_badge">Badge</label>
+                    <input type="number" class="form-control" name="badge" id="field_badge"
+                           formControlName="badge"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.time" for="field_time">Time</label>
+                    <input type="text" class="form-control" name="time" id="field_time"
+                           formControlName="time"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.sendTime" for="field_sendTime">Send Time</label>
+                    <div class="d-flex">
+                        <input id="field_sendTime" type="datetime-local" class="form-control" name="sendTime" formControlName="sendTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.grupo" for="field_grupo">Grupo</label>
+                    <input type="checkbox" class="form-control" name="grupo" id="field_grupo"
+                           formControlName="grupo"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.propietario" for="field_propietario">Propietario</label>
+                    <select class="form-control" id="field_propietario" name="propietario" formControlName="propietario">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="miembrosOption.id === editForm.get('propietario').value?.id ? editForm.get('propietario').value : miembrosOption" *ngFor="let miembrosOption of miembros; trackBy: trackMiembrosById">{{miembrosOption.identificacion}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.chatsListado.destinatario" for="field_destinatario">Destinatario</label>
+                    <select class="form-control" id="field_destinatario" name="destinatario" formControlName="destinatario">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="miembrosOption.id === editForm.get('destinatario').value?.id ? editForm.get('destinatario').value : miembrosOption" *ngFor="let miembrosOption of miembros; trackBy: trackMiembrosById">{{miembrosOption.identificacion}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "newoApp13App": {
+    "prepagoConsumo": {
+      "home": {
+        "title": "Prepago Consumos",
+        "createLabel": "Criar novo Prepago Consumo",
+        "createOrEditLabel": "Criar ou editar Prepago Consumo",
+        "search": "Pesquisar por Prepago Consumo",
+        "notFound": "Nenhum Prepago Consumo encontrado"
+      },
+      "created": "Um novo Prepago Consumo foi criado com o identificador {{ param }}",
+      "updated": "Um Prepago Consumo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Prepago Consumo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Prepago Consumo {{ id }}?"
+      },
+      "detail": {
+        "title": "Prepago Consumo"
+      },
+      "aporte": "Aporte",
+      "saldoActual": "Saldo Actual",
+      "fechaRegistro": "Fecha Registro",
+      "fechaSaldoActual": "Fecha Saldo Actual",
+      "miembro": "Miembro",
+      "tipoPrepago": "Tipo Prepago"
+    }
+  }
+}

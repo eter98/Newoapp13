@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="registroFacturacion">
+            <h2><span jhiTranslate="newoApp13App.registroFacturacion.detail.title">Registro Facturacion</span> {{registroFacturacion.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoApp13App.registroFacturacion.valor">Valor</span></dt>
+                <dd>
+                    <span>{{registroFacturacion.valor}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.registroFacturacion.fechaRegistro">Fecha Registro</span></dt>
+                <dd>
+                    <span>{{registroFacturacion.fechaRegistro}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.registroFacturacion.fechaFacturacion">Fecha Facturacion</span></dt>
+                <dd>
+                    <span>{{registroFacturacion.fechaFacturacion}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.registroFacturacion.tipoRegistro">Tipo Registro</span></dt>
+                <dd>
+                    <div *ngIf="registroFacturacion.tipoRegistro">
+                        <a [routerLink]="['/tipo-registro-compra', registroFacturacion.tipoRegistro?.id, 'view']">{{registroFacturacion.tipoRegistro?.descripcion}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.registroFacturacion.miembro">Miembro</span></dt>
+                <dd>
+                    <div *ngIf="registroFacturacion.miembro">
+                        <a [routerLink]="['/miembros', registroFacturacion.miembro?.id, 'view']">{{registroFacturacion.miembro?.identificacion}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/registro-facturacion', registroFacturacion.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

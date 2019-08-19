@@ -1,0 +1,24 @@
+{
+  "newoApp13App": {
+    "margenNewoGrupos": {
+      "home": {
+        "title": "Margen Newo Grupos",
+        "createLabel": "Criar novo Margen Newo Grupos",
+        "createOrEditLabel": "Criar ou editar Margen Newo Grupos",
+        "search": "Pesquisar por Margen Newo Grupos",
+        "notFound": "Nenhum Margen Newo Grupos encontrado"
+      },
+      "created": "Um novo Margen Newo Grupos foi criado com o identificador {{ param }}",
+      "updated": "Um Margen Newo Grupos foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Margen Newo Grupos foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Margen Newo Grupos {{ id }}?"
+      },
+      "detail": {
+        "title": "Margen Newo Grupos"
+      },
+      "porcentajeMargen": "Porcentaje Margen",
+      "grupo": "Grupo"
+    }
+  }
+}
