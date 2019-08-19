@@ -1,0 +1,127 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.grupos.home.title">Grupos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-grupos" [routerLink]="['/grupos/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.grupos.home.createLabel">
+            Create a new Grupos
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.grupos.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="grupos?.length === 0">
+        <span jhiTranslate="newoApp13App.grupos.home.notFound">No grupos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="grupos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreGrupo"><span jhiTranslate="newoApp13App.grupos.nombreGrupo">Nombre Grupo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instagram"><span jhiTranslate="newoApp13App.grupos.instagram">Instagram</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="facebook"><span jhiTranslate="newoApp13App.grupos.facebook">Facebook</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="twiter"><span jhiTranslate="newoApp13App.grupos.twiter">Twiter</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="linkedIn"><span jhiTranslate="newoApp13App.grupos.linkedIn">Linked In</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoGrupo"><span jhiTranslate="newoApp13App.grupos.tipoGrupo">Tipo Grupo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoConsumo"><span jhiTranslate="newoApp13App.grupos.tipoConsumo">Tipo Consumo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="valorSuscripcion"><span jhiTranslate="newoApp13App.grupos.valorSuscripcion">Valor Suscripcion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="impuesto"><span jhiTranslate="newoApp13App.grupos.impuesto">Impuesto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="reglasGrupo"><span jhiTranslate="newoApp13App.grupos.reglasGrupo">Reglas Grupo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="audio"><span jhiTranslate="newoApp13App.grupos.audio">Audio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="video"><span jhiTranslate="newoApp13App.grupos.video">Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen1"><span jhiTranslate="newoApp13App.grupos.imagen1">Imagen 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen2"><span jhiTranslate="newoApp13App.grupos.imagen2">Imagen 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="banner"><span jhiTranslate="newoApp13App.grupos.banner">Banner</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categoriaGrupo.categoria"><span jhiTranslate="newoApp13App.grupos.categoriaGrupo">Categoria Grupo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let grupos of grupos ;trackBy: trackId">
+                <td><a [routerLink]="['/grupos', grupos.id, 'view' ]">{{grupos.id}}</a></td>
+                <td>{{grupos.nombreGrupo}}</td>
+                <td>{{grupos.instagram}}</td>
+                <td>{{grupos.facebook}}</td>
+                <td>{{grupos.twiter}}</td>
+                <td>{{grupos.linkedIn}}</td>
+                <td jhiTranslate="{{'newoApp13App.TipoGrupod.' + grupos.tipoGrupo}}">{{grupos.tipoGrupo}}</td>
+                <td jhiTranslate="{{'newoApp13App.TipoConsumod.' + grupos.tipoConsumo}}">{{grupos.tipoConsumo}}</td>
+                <td>{{grupos.valorSuscripcion}}</td>
+                <td jhiTranslate="{{'newoApp13App.Impuestod.' + grupos.impuesto}}">{{grupos.impuesto}}</td>
+                <td>{{grupos.reglasGrupo}}</td>
+                <td>
+                    <a *ngIf="grupos.audio" (click)="openFile(grupos.audioContentType, grupos.audio)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="grupos.audio">{{grupos.audioContentType}}, {{byteSize(grupos.audio)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="grupos.video" (click)="openFile(grupos.videoContentType, grupos.video)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="grupos.video">{{grupos.videoContentType}}, {{byteSize(grupos.video)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="grupos.imagen1" (click)="openFile(grupos.imagen1ContentType, grupos.imagen1)">
+                        <img [src]="'data:' + grupos.imagen1ContentType + ';base64,' + grupos.imagen1" style="max-height: 30px;" alt="grupos image"/>
+                    </a>
+                    <span *ngIf="grupos.imagen1">{{grupos.imagen1ContentType}}, {{byteSize(grupos.imagen1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="grupos.imagen2" (click)="openFile(grupos.imagen2ContentType, grupos.imagen2)">
+                        <img [src]="'data:' + grupos.imagen2ContentType + ';base64,' + grupos.imagen2" style="max-height: 30px;" alt="grupos image"/>
+                    </a>
+                    <span *ngIf="grupos.imagen2">{{grupos.imagen2ContentType}}, {{byteSize(grupos.imagen2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="grupos.banner" (click)="openFile(grupos.bannerContentType, grupos.banner)">
+                        <img [src]="'data:' + grupos.bannerContentType + ';base64,' + grupos.banner" style="max-height: 30px;" alt="grupos image"/>
+                    </a>
+                    <span *ngIf="grupos.banner">{{grupos.bannerContentType}}, {{byteSize(grupos.banner)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="grupos.categoriaGrupo">
+                        <a [routerLink]="['/categoria-contenidos', grupos.categoriaGrupo?.id, 'view' ]" >{{grupos.categoriaGrupo?.categoria}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/grupos', grupos.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/grupos', grupos.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/grupos', { outlets: { popup: grupos.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "newoApp13App": {
+    "reservas": {
+      "home": {
+        "title": "Reservas",
+        "createLabel": "Criar novo Reservas",
+        "createOrEditLabel": "Criar ou editar Reservas",
+        "search": "Pesquisar por Reservas",
+        "notFound": "Nenhum Reservas encontrado"
+      },
+      "created": "Um novo Reservas foi criado com o identificador {{ param }}",
+      "updated": "Um Reservas foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Reservas foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Reservas {{ id }}?"
+      },
+      "detail": {
+        "title": "Reservas"
+      },
+      "registroFechaEntrada": "Registro Fecha Entrada",
+      "registroFechaSalida": "Registro Fecha Salida",
+      "estadoReserva": "Estado Reserva",
+      "miembro": "Miembro",
+      "espacio": "Espacio"
+    }
+  }
+}

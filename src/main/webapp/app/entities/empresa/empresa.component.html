@@ -1,0 +1,125 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.empresa.home.title">Empresas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-empresa" [routerLink]="['/empresa/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.empresa.home.createLabel">
+            Create a new Empresa
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.empresa.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="empresas?.length === 0">
+        <span jhiTranslate="newoApp13App.empresa.home.notFound">No empresas found</span>
+    </div>
+    <div class="table-responsive" *ngIf="empresas?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="razonSocial"><span jhiTranslate="newoApp13App.empresa.razonSocial">Razon Social</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nit"><span jhiTranslate="newoApp13App.empresa.nit">Nit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="direccion"><span jhiTranslate="newoApp13App.empresa.direccion">Direccion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefono"><span jhiTranslate="newoApp13App.empresa.telefono">Telefono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="correo"><span jhiTranslate="newoApp13App.empresa.correo">Correo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="web"><span jhiTranslate="newoApp13App.empresa.web">Web</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="celular"><span jhiTranslate="newoApp13App.empresa.celular">Celular</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="biografia"><span jhiTranslate="newoApp13App.empresa.biografia">Biografia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen1"><span jhiTranslate="newoApp13App.empresa.imagen1">Imagen 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen2"><span jhiTranslate="newoApp13App.empresa.imagen2">Imagen 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen3"><span jhiTranslate="newoApp13App.empresa.imagen3">Imagen 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="facebook"><span jhiTranslate="newoApp13App.empresa.facebook">Facebook</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instagram"><span jhiTranslate="newoApp13App.empresa.instagram">Instagram</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idGoogle"><span jhiTranslate="newoApp13App.empresa.idGoogle">Id Google</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="twiter"><span jhiTranslate="newoApp13App.empresa.twiter">Twiter</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="conocimientosQueDomina"><span jhiTranslate="newoApp13App.empresa.conocimientosQueDomina">Conocimientos Que Domina</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="temasDeInteres"><span jhiTranslate="newoApp13App.empresa.temasDeInteres">Temas De Interes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miembro.identificacion"><span jhiTranslate="newoApp13App.empresa.miembro">Miembro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let empresa of empresas ;trackBy: trackId">
+                <td><a [routerLink]="['/empresa', empresa.id, 'view' ]">{{empresa.id}}</a></td>
+                <td>{{empresa.razonSocial}}</td>
+                <td>{{empresa.nit}}</td>
+                <td>{{empresa.direccion}}</td>
+                <td>{{empresa.telefono}}</td>
+                <td>{{empresa.correo}}</td>
+                <td>{{empresa.web}}</td>
+                <td>{{empresa.celular}}</td>
+                <td>{{empresa.biografia}}</td>
+                <td>
+                    <a *ngIf="empresa.imagen1" (click)="openFile(empresa.imagen1ContentType, empresa.imagen1)">
+                        <img [src]="'data:' + empresa.imagen1ContentType + ';base64,' + empresa.imagen1" style="max-height: 30px;" alt="empresa image"/>
+                    </a>
+                    <span *ngIf="empresa.imagen1">{{empresa.imagen1ContentType}}, {{byteSize(empresa.imagen1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="empresa.imagen2" (click)="openFile(empresa.imagen2ContentType, empresa.imagen2)">
+                        <img [src]="'data:' + empresa.imagen2ContentType + ';base64,' + empresa.imagen2" style="max-height: 30px;" alt="empresa image"/>
+                    </a>
+                    <span *ngIf="empresa.imagen2">{{empresa.imagen2ContentType}}, {{byteSize(empresa.imagen2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="empresa.imagen3" (click)="openFile(empresa.imagen3ContentType, empresa.imagen3)">
+                        <img [src]="'data:' + empresa.imagen3ContentType + ';base64,' + empresa.imagen3" style="max-height: 30px;" alt="empresa image"/>
+                    </a>
+                    <span *ngIf="empresa.imagen3">{{empresa.imagen3ContentType}}, {{byteSize(empresa.imagen3)}}</span>
+                </td>
+                <td>{{empresa.facebook}}</td>
+                <td>{{empresa.instagram}}</td>
+                <td>{{empresa.idGoogle}}</td>
+                <td>{{empresa.twiter}}</td>
+                <td>{{empresa.conocimientosQueDomina}}</td>
+                <td>{{empresa.temasDeInteres}}</td>
+                <td>
+                    <div *ngIf="empresa.miembro">
+                        <a [routerLink]="['/miembros', empresa.miembro?.id, 'view' ]" >{{empresa.miembro?.identificacion}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/empresa', empresa.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/empresa', empresa.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/empresa', { outlets: { popup: empresa.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

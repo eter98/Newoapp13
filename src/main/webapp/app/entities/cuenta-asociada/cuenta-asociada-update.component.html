@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-cuenta-asociada-heading" jhiTranslate="newoApp13App.cuentaAsociada.home.createOrEditLabel">Create or edit a Cuenta Asociada</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.cuentaAsociada.identificaciontitular" for="field_identificaciontitular">Identificaciontitular</label>
+                    <input type="text" class="form-control" name="identificaciontitular" id="field_identificaciontitular"
+                           formControlName="identificaciontitular"/>
+                    <div *ngIf="editForm.get('identificaciontitular').invalid && (editForm.get('identificaciontitular').dirty || editForm.get('identificaciontitular').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('identificaciontitular').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.cuentaAsociada.nombreTitular" for="field_nombreTitular">Nombre Titular</label>
+                    <input type="text" class="form-control" name="nombreTitular" id="field_nombreTitular"
+                           formControlName="nombreTitular"/>
+                    <div *ngIf="editForm.get('nombreTitular').invalid && (editForm.get('nombreTitular').dirty || editForm.get('nombreTitular').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombreTitular').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.cuentaAsociada.apellidoTitular" for="field_apellidoTitular">Apellido Titular</label>
+                    <input type="text" class="form-control" name="apellidoTitular" id="field_apellidoTitular"
+                           formControlName="apellidoTitular"/>
+                    <div *ngIf="editForm.get('apellidoTitular').invalid && (editForm.get('apellidoTitular').dirty || editForm.get('apellidoTitular').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('apellidoTitular').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.cuentaAsociada.numeroCuenta" for="field_numeroCuenta">Numero Cuenta</label>
+                    <input type="text" class="form-control" name="numeroCuenta" id="field_numeroCuenta"
+                           formControlName="numeroCuenta"/>
+                    <div *ngIf="editForm.get('numeroCuenta').invalid && (editForm.get('numeroCuenta').dirty || editForm.get('numeroCuenta').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numeroCuenta').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.cuentaAsociada.tipoCuenta" for="field_tipoCuenta">Tipo Cuenta</label>
+                    <input type="text" class="form-control" name="tipoCuenta" id="field_tipoCuenta"
+                           formControlName="tipoCuenta"/>
+                    <div *ngIf="editForm.get('tipoCuenta').invalid && (editForm.get('tipoCuenta').dirty || editForm.get('tipoCuenta').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tipoCuenta').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.cuentaAsociada.codigoSeguridad" for="field_codigoSeguridad">Codigo Seguridad</label>
+                    <input type="text" class="form-control" name="codigoSeguridad" id="field_codigoSeguridad"
+                           formControlName="codigoSeguridad"/>
+                    <div *ngIf="editForm.get('codigoSeguridad').invalid && (editForm.get('codigoSeguridad').dirty || editForm.get('codigoSeguridad').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codigoSeguridad').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.cuentaAsociada.fechaVencimiento" for="field_fechaVencimiento">Fecha Vencimiento</label>
+                    <div class="input-group">
+                        <input id="field_fechaVencimiento" type="text" class="form-control" name="fechaVencimiento" ngbDatepicker  #fechaVencimientoDp="ngbDatepicker" formControlName="fechaVencimiento"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fechaVencimientoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('fechaVencimiento').invalid && (editForm.get('fechaVencimiento').dirty || editForm.get('fechaVencimiento').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fechaVencimiento').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
