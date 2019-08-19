@@ -1,0 +1,45 @@
+{
+  "newoApp13App": {
+    "miembros": {
+      "home": {
+        "title": "Miembros",
+        "createLabel": "Criar novo Miembros",
+        "createOrEditLabel": "Criar ou editar Miembros",
+        "search": "Pesquisar por Miembros",
+        "notFound": "Nenhum Miembros encontrado"
+      },
+      "created": "Um novo Miembros foi criado com o identificador {{ param }}",
+      "updated": "Um Miembros foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Miembros foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Miembros {{ id }}?"
+      },
+      "detail": {
+        "title": "Miembros"
+      },
+      "tipoDocumento": "Tipo Documento",
+      "identificacion": "Identificacion",
+      "fechaNacimiento": "Fecha Nacimiento",
+      "fechaRegistro": "Fecha Registro",
+      "genero": "Genero",
+      "celular": "Celular",
+      "biografia": "Biografia",
+      "foto1": "Foto 1",
+      "foto2": "Foto 2",
+      "fot3": "Fot 3",
+      "conocimientosQueDomina": "Conocimientos Que Domina",
+      "temasDeInteres": "Temas De Interes",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "idGoogle": "Id Google",
+      "twiter": "Twiter",
+      "derechosDeCompra": "Derechos De Compra",
+      "accesoIlimitado": "Acceso Ilimitado",
+      "aliado": "Aliado",
+      "host": "Host",
+      "miembro": "Miembro",
+      "nacionalidad": "Nacionalidad",
+      "sede": "Sede"
+    }
+  }
+}

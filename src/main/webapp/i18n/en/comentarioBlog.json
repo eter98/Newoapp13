@@ -1,0 +1,28 @@
+{
+  "newoApp13App": {
+    "comentarioBlog": {
+      "home": {
+        "title": "Comentario Blogs",
+        "createLabel": "Create a new Comentario Blog",
+        "createOrEditLabel": "Create or edit a Comentario Blog",
+        "search": "Search for Comentario Blog",
+        "notFound": "No Comentario Blogs found"
+      },
+      "created": "A new Comentario Blog is created with identifier {{ param }}",
+      "updated": "A Comentario Blog is updated with identifier {{ param }}",
+      "deleted": "A Comentario Blog is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Comentario Blog {{ id }}?"
+      },
+      "detail": {
+        "title": "Comentario Blog"
+      },
+      "comentario": "Comentario",
+      "fecha": "Fecha",
+      "meGusta": "Me Gusta",
+      "seguir": "Seguir",
+      "blog": "Blog",
+      "miembroComenta": "Miembro Comenta"
+    }
+  }
+}

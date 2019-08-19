@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="registroCompra">
+            <h2><span jhiTranslate="newoApp13App.registroCompra.detail.title">Registro Compra</span> {{registroCompra.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoApp13App.registroCompra.consumoMarket">Consumo Market</span></dt>
+                <dd>
+                    <span>{{registroCompra.consumoMarket}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.registroCompra.valor">Valor</span></dt>
+                <dd>
+                    <span>{{registroCompra.valor}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.registroCompra.miembro">Miembro</span></dt>
+                <dd>
+                    <div *ngIf="registroCompra.miembro">
+                        <a [routerLink]="['/miembros', registroCompra.miembro?.id, 'view']">{{registroCompra.miembro?.identificacion}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/registro-compra', registroCompra.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

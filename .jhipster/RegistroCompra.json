@@ -1,0 +1,32 @@
+{
+    "name": "RegistroCompra",
+    "fields": [
+        {
+            "fieldName": "consumoMarket",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "registroCompra",
+            "relationshipName": "miembro",
+            "otherEntityField": "identificacion"
+        }
+    ],
+    "changelogDate": "20190819162944",
+    "entityTableName": "registro_compra",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="feed">
+            <h2><span jhiTranslate="newoApp13App.feed.detail.title">Feed</span> {{feed.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoApp13App.feed.titulo">Titulo</span></dt>
+                <dd>
+                    <span>{{feed.titulo}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.feed.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{feed.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.feed.imagen1">Imagen 1</span></dt>
+                <dd>
+                    <div *ngIf="feed.imagen1">
+                        <a (click)="openFile(feed.imagen1ContentType, feed.imagen1)">
+                            <img [src]="'data:' + feed.imagen1ContentType + ';base64,' + feed.imagen1" style="max-width: 100%;" alt="feed image"/>
+                        </a>
+                        {{feed.imagen1ContentType}}, {{byteSize(feed.imagen1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.feed.imagen2">Imagen 2</span></dt>
+                <dd>
+                    <div *ngIf="feed.imagen2">
+                        <a (click)="openFile(feed.imagen2ContentType, feed.imagen2)">
+                            <img [src]="'data:' + feed.imagen2ContentType + ';base64,' + feed.imagen2" style="max-width: 100%;" alt="feed image"/>
+                        </a>
+                        {{feed.imagen2ContentType}}, {{byteSize(feed.imagen2)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.feed.tipoContenido">Tipo Contenido</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoApp13App.Categoriad.' + feed.tipoContenido}}">{{feed.tipoContenido}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.feed.contenido">Contenido</span></dt>
+                <dd>
+                    <span>{{feed.contenido}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.feed.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{feed.fecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.feed.miembro">Miembro</span></dt>
+                <dd>
+                    <div *ngIf="feed.miembro">
+                        <a [routerLink]="['/miembros', feed.miembro?.id, 'view']">{{feed.miembro?.identificacion}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.feed.categoriaFeed">Categoria Feed</span></dt>
+                <dd>
+                    <div *ngIf="feed.categoriaFeed">
+                        <a [routerLink]="['/categoria-contenidos', feed.categoriaFeed?.id, 'view']">{{feed.categoriaFeed?.categoria}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/feed', feed.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

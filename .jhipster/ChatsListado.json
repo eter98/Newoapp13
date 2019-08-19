@@ -1,0 +1,66 @@
+{
+    "name": "ChatsListado",
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estatus",
+            "fieldType": "Estatusd",
+            "fieldValues": "EnLinea,Desconectado"
+        },
+        {
+            "fieldName": "count",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "badge",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "time",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sendTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "grupo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "chatsListado",
+            "relationshipName": "propietario",
+            "otherEntityField": "identificacion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "chatsListado",
+            "relationshipName": "destinatario",
+            "otherEntityField": "identificacion"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chat",
+            "otherEntityRelationshipName": "chatsListado",
+            "relationshipName": "chat"
+        }
+    ],
+    "changelogDate": "20190819163002",
+    "entityTableName": "chats_listado",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

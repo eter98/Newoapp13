@@ -1,0 +1,127 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.productosServicios.home.title">Productos Servicios</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-productos-servicios" [routerLink]="['/productos-servicios/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.productosServicios.home.createLabel">
+            Create a new Productos Servicios
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.productosServicios.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="productosServicios?.length === 0">
+        <span jhiTranslate="newoApp13App.productosServicios.home.notFound">No productosServicios found</span>
+    </div>
+    <div class="table-responsive" *ngIf="productosServicios?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreProducto"><span jhiTranslate="newoApp13App.productosServicios.nombreProducto">Nombre Producto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="descripcion"><span jhiTranslate="newoApp13App.productosServicios.descripcion">Descripcion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="inventariables"><span jhiTranslate="newoApp13App.productosServicios.inventariables">Inventariables</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="valor"><span jhiTranslate="newoApp13App.productosServicios.valor">Valor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="impuesto"><span jhiTranslate="newoApp13App.productosServicios.impuesto">Impuesto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="video"><span jhiTranslate="newoApp13App.productosServicios.video">Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen1"><span jhiTranslate="newoApp13App.productosServicios.imagen1">Imagen 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen2"><span jhiTranslate="newoApp13App.productosServicios.imagen2">Imagen 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen3"><span jhiTranslate="newoApp13App.productosServicios.imagen3">Imagen 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen4"><span jhiTranslate="newoApp13App.productosServicios.imagen4">Imagen 4</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen5"><span jhiTranslate="newoApp13App.productosServicios.imagen5">Imagen 5</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen6"><span jhiTranslate="newoApp13App.productosServicios.imagen6">Imagen 6</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let productosServicios of productosServicios ;trackBy: trackId">
+                <td><a [routerLink]="['/productos-servicios', productosServicios.id, 'view' ]">{{productosServicios.id}}</a></td>
+                <td>{{productosServicios.nombreProducto}}</td>
+                <td>{{productosServicios.descripcion}}</td>
+                <td>{{productosServicios.inventariables}}</td>
+                <td>{{productosServicios.valor}}</td>
+                <td jhiTranslate="{{'newoApp13App.Impuestod.' + productosServicios.impuesto}}">{{productosServicios.impuesto}}</td>
+                <td>
+                    <a *ngIf="productosServicios.video" (click)="openFile(productosServicios.videoContentType, productosServicios.video)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="productosServicios.video">{{productosServicios.videoContentType}}, {{byteSize(productosServicios.video)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="productosServicios.imagen1" (click)="openFile(productosServicios.imagen1ContentType, productosServicios.imagen1)">
+                        <img [src]="'data:' + productosServicios.imagen1ContentType + ';base64,' + productosServicios.imagen1" style="max-height: 30px;" alt="productosServicios image"/>
+                    </a>
+                    <span *ngIf="productosServicios.imagen1">{{productosServicios.imagen1ContentType}}, {{byteSize(productosServicios.imagen1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="productosServicios.imagen2" (click)="openFile(productosServicios.imagen2ContentType, productosServicios.imagen2)">
+                        <img [src]="'data:' + productosServicios.imagen2ContentType + ';base64,' + productosServicios.imagen2" style="max-height: 30px;" alt="productosServicios image"/>
+                    </a>
+                    <span *ngIf="productosServicios.imagen2">{{productosServicios.imagen2ContentType}}, {{byteSize(productosServicios.imagen2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="productosServicios.imagen3" (click)="openFile(productosServicios.imagen3ContentType, productosServicios.imagen3)">
+                        <img [src]="'data:' + productosServicios.imagen3ContentType + ';base64,' + productosServicios.imagen3" style="max-height: 30px;" alt="productosServicios image"/>
+                    </a>
+                    <span *ngIf="productosServicios.imagen3">{{productosServicios.imagen3ContentType}}, {{byteSize(productosServicios.imagen3)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="productosServicios.imagen4" (click)="openFile(productosServicios.imagen4ContentType, productosServicios.imagen4)">
+                        <img [src]="'data:' + productosServicios.imagen4ContentType + ';base64,' + productosServicios.imagen4" style="max-height: 30px;" alt="productosServicios image"/>
+                    </a>
+                    <span *ngIf="productosServicios.imagen4">{{productosServicios.imagen4ContentType}}, {{byteSize(productosServicios.imagen4)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="productosServicios.imagen5" (click)="openFile(productosServicios.imagen5ContentType, productosServicios.imagen5)">
+                        <img [src]="'data:' + productosServicios.imagen5ContentType + ';base64,' + productosServicios.imagen5" style="max-height: 30px;" alt="productosServicios image"/>
+                    </a>
+                    <span *ngIf="productosServicios.imagen5">{{productosServicios.imagen5ContentType}}, {{byteSize(productosServicios.imagen5)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="productosServicios.imagen6" (click)="openFile(productosServicios.imagen6ContentType, productosServicios.imagen6)">
+                        <img [src]="'data:' + productosServicios.imagen6ContentType + ';base64,' + productosServicios.imagen6" style="max-height: 30px;" alt="productosServicios image"/>
+                    </a>
+                    <span *ngIf="productosServicios.imagen6">{{productosServicios.imagen6ContentType}}, {{byteSize(productosServicios.imagen6)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/productos-servicios', productosServicios.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/productos-servicios', productosServicios.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/productos-servicios', { outlets: { popup: productosServicios.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
