@@ -1,0 +1,30 @@
+{
+  "newoApp13App": {
+    "entradaMiembros": {
+      "home": {
+        "title": "Entrada Miembros",
+        "createLabel": "Criar novo Entrada Miembros",
+        "createOrEditLabel": "Criar ou editar Entrada Miembros",
+        "search": "Pesquisar por Entrada Miembros",
+        "notFound": "Nenhum Entrada Miembros encontrado"
+      },
+      "created": "Um novo Entrada Miembros foi criado com o identificador {{ param }}",
+      "updated": "Um Entrada Miembros foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Entrada Miembros foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Entrada Miembros {{ id }}?"
+      },
+      "detail": {
+        "title": "Entrada Miembros"
+      },
+      "registroFecha": "Registro Fecha",
+      "tipoEntrada": "Tipo Entrada",
+      "tipoIngreso": "Tipo Ingreso",
+      "tiempoMaximo": "Tiempo Maximo",
+      "miembro": "Miembro",
+      "espacio": "Espacio",
+      "oficina": "Oficina",
+      "espacioReserva": "Espacio Reserva"
+    }
+  }
+}

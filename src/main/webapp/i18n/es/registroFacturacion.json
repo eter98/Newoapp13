@@ -1,0 +1,27 @@
+{
+  "newoApp13App": {
+    "registroFacturacion": {
+      "home": {
+        "title": "Registro Facturacions",
+        "createLabel": "Crear nuevo Registro Facturacion",
+        "createOrEditLabel": "Crear o editar Registro Facturacion",
+        "search": "Search for Registro Facturacion",
+        "notFound": "No Registro Facturacions found"
+      },
+      "created": "Un nuevo Registro Facturacion ha sido creado con el identificador {{ param }}",
+      "updated": "Un Registro Facturacion ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Registro Facturacion ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Registro Facturacion {{ id }}?"
+      },
+      "detail": {
+        "title": "Registro Facturacion"
+      },
+      "valor": "Valor",
+      "fechaRegistro": "Fecha Registro",
+      "fechaFacturacion": "Fecha Facturacion",
+      "tipoRegistro": "Tipo Registro",
+      "miembro": "Miembro"
+    }
+  }
+}

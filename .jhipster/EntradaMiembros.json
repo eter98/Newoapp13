@@ -1,0 +1,63 @@
+{
+    "name": "EntradaMiembros",
+    "fields": [
+        {
+            "fieldName": "registroFecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "tipoEntrada",
+            "fieldType": "TipoEntradad",
+            "fieldValues": "INGRESO,SALIDA"
+        },
+        {
+            "fieldName": "tipoIngreso",
+            "fieldType": "TipoIngresod",
+            "fieldValues": "Espacio_Libre,Reserva,Oficina"
+        },
+        {
+            "fieldName": "tiempoMaximo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "entradaMiembros",
+            "relationshipName": "miembro",
+            "otherEntityField": "identificacion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "espacioLibre",
+            "otherEntityRelationshipName": "entradaMiembros",
+            "relationshipName": "espacio",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "landing",
+            "otherEntityRelationshipName": "entradaMiembros",
+            "relationshipName": "oficina",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "espaciosReserva",
+            "otherEntityRelationshipName": "entradaMiembros",
+            "relationshipName": "espacioReserva",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20190819202811",
+    "entityTableName": "entrada_miembros",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

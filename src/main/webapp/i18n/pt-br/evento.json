@@ -1,0 +1,38 @@
+{
+  "newoApp13App": {
+    "evento": {
+      "home": {
+        "title": "Eventos",
+        "createLabel": "Criar novo Evento",
+        "createOrEditLabel": "Criar ou editar Evento",
+        "search": "Pesquisar por Evento",
+        "notFound": "Nenhum Evento encontrado"
+      },
+      "created": "Um novo Evento foi criado com o identificador {{ param }}",
+      "updated": "Um Evento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Evento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Evento {{ id }}?"
+      },
+      "detail": {
+        "title": "Evento"
+      },
+      "nombreEvento": "Nombre Evento",
+      "descripcion": "Descripcion",
+      "contenido": "Contenido",
+      "audio": "Audio",
+      "video": "Video",
+      "imagen1": "Imagen 1",
+      "imagen2": "Imagen 2",
+      "banner": "Banner",
+      "tipoConsumo": "Tipo Consumo",
+      "valor": "Valor",
+      "impuesto": "Impuesto",
+      "tipoEvento": "Tipo Evento",
+      "eventoNEWO": "Evento NEWO",
+      "categoriaEvento": "Categoria Evento",
+      "grupos": "Grupos",
+      "miembro": "Miembro"
+    }
+  }
+}

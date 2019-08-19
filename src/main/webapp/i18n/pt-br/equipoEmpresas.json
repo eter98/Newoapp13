@@ -1,0 +1,32 @@
+{
+  "newoApp13App": {
+    "equipoEmpresas": {
+      "home": {
+        "title": "Equipo Empresas",
+        "createLabel": "Criar novo Equipo Empresas",
+        "createOrEditLabel": "Criar ou editar Equipo Empresas",
+        "search": "Pesquisar por Equipo Empresas",
+        "notFound": "Nenhum Equipo Empresas encontrado"
+      },
+      "created": "Um novo Equipo Empresas foi criado com o identificador {{ param }}",
+      "updated": "Um Equipo Empresas foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Equipo Empresas foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Equipo Empresas {{ id }}?"
+      },
+      "detail": {
+        "title": "Equipo Empresas"
+      },
+      "nombre": "Nombre",
+      "telefono": "Telefono",
+      "correo": "Correo",
+      "direccion": "Direccion",
+      "descripcion": "Descripcion",
+      "logo": "Logo",
+      "paginaWeb": "Pagina Web",
+      "conocimientosQueDomina": "Conocimientos Que Domina",
+      "temasDeInteres": "Temas De Interes",
+      "empresa": "Empresa"
+    }
+  }
+}

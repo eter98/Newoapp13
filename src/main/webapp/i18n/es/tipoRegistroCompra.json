@@ -1,0 +1,23 @@
+{
+  "newoApp13App": {
+    "tipoRegistroCompra": {
+      "home": {
+        "title": "Tipo Registro Compras",
+        "createLabel": "Crear nuevo Tipo Registro Compra",
+        "createOrEditLabel": "Crear o editar Tipo Registro Compra",
+        "search": "Search for Tipo Registro Compra",
+        "notFound": "No Tipo Registro Compras found"
+      },
+      "created": "Un nuevo Tipo Registro Compra ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo Registro Compra ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo Registro Compra ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Registro Compra {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Registro Compra"
+      },
+      "descripcion": "Descripcion"
+    }
+  }
+}

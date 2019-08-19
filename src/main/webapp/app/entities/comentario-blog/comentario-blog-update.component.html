@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-comentario-blog-heading" jhiTranslate="newoApp13App.comentarioBlog.home.createOrEditLabel">Create or edit a Comentario Blog</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.comentarioBlog.comentario" for="field_comentario">Comentario</label>
+                    <textarea class="form-control" name="comentario" id="field_comentario"
+                              formControlName="comentario"></textarea>
+                    <div *ngIf="editForm.get('comentario').invalid && (editForm.get('comentario').dirty || editForm.get('comentario').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('comentario').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.comentarioBlog.fecha" for="field_fecha">Fecha</label>
+                    <div class="d-flex">
+                        <input id="field_fecha" type="datetime-local" class="form-control" name="fecha" formControlName="fecha" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.comentarioBlog.meGusta" for="field_meGusta">Me Gusta</label>
+                    <input type="checkbox" class="form-control" name="meGusta" id="field_meGusta"
+                           formControlName="meGusta"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.comentarioBlog.seguir" for="field_seguir">Seguir</label>
+                    <input type="checkbox" class="form-control" name="seguir" id="field_seguir"
+                           formControlName="seguir"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.comentarioBlog.blog" for="field_blog">Blog</label>
+                    <select class="form-control" id="field_blog" name="blog" formControlName="blog">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="blogOption.id === editForm.get('blog').value?.id ? editForm.get('blog').value : blogOption" *ngFor="let blogOption of blogs; trackBy: trackBlogById">{{blogOption.titulo}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.comentarioBlog.miembroComenta" for="field_miembroComenta">Miembro Comenta</label>
+                    <select class="form-control" id="field_miembroComenta" name="miembroComenta" formControlName="miembroComenta">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="miembrosOption.id === editForm.get('miembroComenta').value?.id ? editForm.get('miembroComenta').value : miembrosOption" *ngFor="let miembrosOption of miembros; trackBy: trackMiembrosById">{{miembrosOption.identificacion}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

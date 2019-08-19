@@ -1,0 +1,100 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.chat.home.title">Chats</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-chat" [routerLink]="['/chat/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.chat.home.createLabel">
+            Create a new Chat
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.chat.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="chats?.length === 0">
+        <span jhiTranslate="newoApp13App.chat.home.notFound">No chats found</span>
+    </div>
+    <div class="table-responsive" *ngIf="chats?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mensaje"><span jhiTranslate="newoApp13App.chat.mensaje">Mensaje</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sender"><span jhiTranslate="newoApp13App.chat.sender">Sender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="read"><span jhiTranslate="newoApp13App.chat.read">Read</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="delivered"><span jhiTranslate="newoApp13App.chat.delivered">Delivered</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sent"><span jhiTranslate="newoApp13App.chat.sent">Sent</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fecha"><span jhiTranslate="newoApp13App.chat.fecha">Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="chatsListado.id"><span jhiTranslate="newoApp13App.chat.chatsListado">Chats Listado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="de.identificacion"><span jhiTranslate="newoApp13App.chat.de">De</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="para.identificacion"><span jhiTranslate="newoApp13App.chat.para">Para</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let chat of chats ;trackBy: trackId">
+                <td><a [routerLink]="['/chat', chat.id, 'view' ]">{{chat.id}}</a></td>
+                <td>{{chat.mensaje}}</td>
+                <td>{{chat.sender}}</td>
+                <td>{{chat.read}}</td>
+                <td>{{chat.delivered}}</td>
+                <td>{{chat.sent}}</td>
+                <td>{{chat.fecha | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="chat.chatsListado">
+                        <a [routerLink]="['/chats-listado', chat.chatsListado?.id, 'view' ]" >{{chat.chatsListado?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="chat.de">
+                        <a [routerLink]="['/miembros', chat.de?.id, 'view' ]" >{{chat.de?.identificacion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="chat.para">
+                        <a [routerLink]="['/miembros', chat.para?.id, 'view' ]" >{{chat.para?.identificacion}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/chat', chat.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/chat', chat.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/chat', { outlets: { popup: chat.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "newoApp13App": {
+    "tipoPrepagoConsumo": {
+      "home": {
+        "title": "Tipo Prepago Consumos",
+        "createLabel": "Criar novo Tipo Prepago Consumo",
+        "createOrEditLabel": "Criar ou editar Tipo Prepago Consumo",
+        "search": "Pesquisar por Tipo Prepago Consumo",
+        "notFound": "Nenhum Tipo Prepago Consumo encontrado"
+      },
+      "created": "Um novo Tipo Prepago Consumo foi criado com o identificador {{ param }}",
+      "updated": "Um Tipo Prepago Consumo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tipo Prepago Consumo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tipo Prepago Consumo {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Prepago Consumo"
+      },
+      "nombre": "Nombre",
+      "descripcion": "Descripcion",
+      "valorMinimo": "Valor Minimo",
+      "valorMaximo": "Valor Maximo",
+      "tipoBeneficio": "Tipo Beneficio"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "newoApp13App": {
+    "EstadoReservad": {
+      "null": "",
+      "Cancelada": "Cancelada",
+      "Activa": "Activa",
+      "Reservada": "Reservada",
+      "Ocupada": "Ocupada",
+      "Extendida": "Extendida",
+      "Cerrada": "Cerrada"
+    }
+  }
+}

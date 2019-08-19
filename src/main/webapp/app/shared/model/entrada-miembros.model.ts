@@ -1,0 +1,44 @@
+import { Moment } from 'moment';
+import { IMiembros } from 'app/shared/model/miembros.model';
+import { IEspacioLibre } from 'app/shared/model/espacio-libre.model';
+import { ILanding } from 'app/shared/model/landing.model';
+import { IEspaciosReserva } from 'app/shared/model/espacios-reserva.model';
+
+export const enum TipoEntradad {
+  INGRESO = 'INGRESO',
+  SALIDA = 'SALIDA'
+}
+
+export const enum TipoIngresod {
+  Espacio_Libre = 'Espacio_Libre',
+  Reserva = 'Reserva',
+  Oficina = 'Oficina'
+}
+
+export interface IEntradaMiembros {
+  id?: number;
+  registroFecha?: Moment;
+  tipoEntrada?: TipoEntradad;
+  tipoIngreso?: TipoIngresod;
+  tiempoMaximo?: boolean;
+  miembro?: IMiembros;
+  espacio?: IEspacioLibre;
+  oficina?: ILanding;
+  espacioReserva?: IEspaciosReserva;
+}
+
+export class EntradaMiembros implements IEntradaMiembros {
+  constructor(
+    public id?: number,
+    public registroFecha?: Moment,
+    public tipoEntrada?: TipoEntradad,
+    public tipoIngreso?: TipoIngresod,
+    public tiempoMaximo?: boolean,
+    public miembro?: IMiembros,
+    public espacio?: IEspacioLibre,
+    public oficina?: ILanding,
+    public espacioReserva?: IEspaciosReserva
+  ) {
+    this.tiempoMaximo = this.tiempoMaximo || false;
+  }
+}
