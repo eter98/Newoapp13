@@ -1,0 +1,134 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="miembros">
+            <h2><span jhiTranslate="newoApp13App.miembros.detail.title">Miembros</span> {{miembros.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoApp13App.miembros.tipoDocumento">Tipo Documento</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoApp13App.TipoDocumentod.' + miembros.tipoDocumento}}">{{miembros.tipoDocumento}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.identificacion">Identificacion</span></dt>
+                <dd>
+                    <span>{{miembros.identificacion}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.fechaNacimiento">Fecha Nacimiento</span></dt>
+                <dd>
+                    <span>{{miembros.fechaNacimiento}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.fechaRegistro">Fecha Registro</span></dt>
+                <dd>
+                    <span>{{miembros.fechaRegistro}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.genero">Genero</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoApp13App.Generod.' + miembros.genero}}">{{miembros.genero}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.celular">Celular</span></dt>
+                <dd>
+                    <span>{{miembros.celular}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.biografia">Biografia</span></dt>
+                <dd>
+                    <span>{{miembros.biografia}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.foto1">Foto 1</span></dt>
+                <dd>
+                    <div *ngIf="miembros.foto1">
+                        <a (click)="openFile(miembros.foto1ContentType, miembros.foto1)">
+                            <img [src]="'data:' + miembros.foto1ContentType + ';base64,' + miembros.foto1" style="max-width: 100%;" alt="miembros image"/>
+                        </a>
+                        {{miembros.foto1ContentType}}, {{byteSize(miembros.foto1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.foto2">Foto 2</span></dt>
+                <dd>
+                    <div *ngIf="miembros.foto2">
+                        <a (click)="openFile(miembros.foto2ContentType, miembros.foto2)">
+                            <img [src]="'data:' + miembros.foto2ContentType + ';base64,' + miembros.foto2" style="max-width: 100%;" alt="miembros image"/>
+                        </a>
+                        {{miembros.foto2ContentType}}, {{byteSize(miembros.foto2)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.fot3">Fot 3</span></dt>
+                <dd>
+                    <div *ngIf="miembros.fot3">
+                        <a (click)="openFile(miembros.fot3ContentType, miembros.fot3)">
+                            <img [src]="'data:' + miembros.fot3ContentType + ';base64,' + miembros.fot3" style="max-width: 100%;" alt="miembros image"/>
+                        </a>
+                        {{miembros.fot3ContentType}}, {{byteSize(miembros.fot3)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.conocimientosQueDomina">Conocimientos Que Domina</span></dt>
+                <dd>
+                    <span>{{miembros.conocimientosQueDomina}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.temasDeInteres">Temas De Interes</span></dt>
+                <dd>
+                    <span>{{miembros.temasDeInteres}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.facebook">Facebook</span></dt>
+                <dd>
+                    <span>{{miembros.facebook}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.instagram">Instagram</span></dt>
+                <dd>
+                    <span>{{miembros.instagram}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.idGoogle">Id Google</span></dt>
+                <dd>
+                    <span>{{miembros.idGoogle}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.twiter">Twiter</span></dt>
+                <dd>
+                    <span>{{miembros.twiter}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.derechosDeCompra">Derechos De Compra</span></dt>
+                <dd>
+                    <span>{{miembros.derechosDeCompra}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.accesoIlimitado">Acceso Ilimitado</span></dt>
+                <dd>
+                    <span>{{miembros.accesoIlimitado}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.aliado">Aliado</span></dt>
+                <dd>
+                    <span>{{miembros.aliado}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.host">Host</span></dt>
+                <dd>
+                    <span>{{miembros.host}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.miembro">Miembro</span></dt>
+                <dd>
+                    {{miembros.miembro?.login}}
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.nacionalidad">Nacionalidad</span></dt>
+                <dd>
+                    <div *ngIf="miembros.nacionalidad">
+                        <a [routerLink]="['/pais', miembros.nacionalidad?.id, 'view']">{{miembros.nacionalidad?.nombrePais}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.miembros.sede">Sede</span></dt>
+                <dd>
+                    <div *ngIf="miembros.sede">
+                        <a [routerLink]="['/sedes', miembros.sede?.id, 'view']">{{miembros.sede?.nombreSede}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/miembros', miembros.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

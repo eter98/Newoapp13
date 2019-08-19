@@ -1,0 +1,39 @@
+{
+    "name": "Beneficio",
+    "fields": [
+        {
+            "fieldName": "tipoBeneficio",
+            "fieldType": "Beneficiosd",
+            "fieldValues": "Market,Entrada_Miembro,Espacios_Reserva,Invitados,Landings",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descuento",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "beneficio",
+            "relationshipName": "miembro",
+            "otherEntityField": "identificacion"
+        }
+    ],
+    "changelogDate": "20190819162950",
+    "entityTableName": "beneficio",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

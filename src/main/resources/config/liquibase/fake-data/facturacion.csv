@@ -1,0 +1,11 @@
+id;titular_factura;tipo_persona;periodicidad_facturacion;maximo_monto;valor
+1;Sausages bypass;JURIDICA;TRIMESTRAL;5792;62091
+2;Refined Fresh Chips;NATURAL;SEMANAL;2212;82151
+3;target;NATURAL;BIMESTRAL;94430;42618
+4;Terrace;NATURAL;BIMESTRAL;68049;23005
+5;Plastic XSS;NATURAL;TRIMESTRAL;76009;27421
+6;Specialist e-services;NATURAL;QUINCENAL;47320;54323
+7;Mouse fuchsia Licensed;NATURAL;BIMESTRAL;29416;3252
+8;Principal Savings Account online;JURIDICA;BIMESTRAL;20052;22554
+9;Car payment;JURIDICA;BIMESTRAL;46459;7244
+10;disintermediate Walks Credit Card Account;NATURAL;TRIMESTRAL;10493;14592

@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.usoRecursoFisico.home.title">Uso Recurso Fisicos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-uso-recurso-fisico" [routerLink]="['/uso-recurso-fisico/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.usoRecursoFisico.home.createLabel">
+            Create a new Uso Recurso Fisico
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.usoRecursoFisico.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="usoRecursoFisicos?.length === 0">
+        <span jhiTranslate="newoApp13App.usoRecursoFisico.home.notFound">No usoRecursoFisicos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="usoRecursoFisicos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="registroFechaInicio"><span jhiTranslate="newoApp13App.usoRecursoFisico.registroFechaInicio">Registro Fecha Inicio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="registroFechaFinal"><span jhiTranslate="newoApp13App.usoRecursoFisico.registroFechaFinal">Registro Fecha Final</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoRegistro"><span jhiTranslate="newoApp13App.usoRecursoFisico.tipoRegistro">Tipo Registro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="recurso.recurso"><span jhiTranslate="newoApp13App.usoRecursoFisico.recurso">Recurso</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miembro.identificacion"><span jhiTranslate="newoApp13App.usoRecursoFisico.miembro">Miembro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let usoRecursoFisico of usoRecursoFisicos ;trackBy: trackId">
+                <td><a [routerLink]="['/uso-recurso-fisico', usoRecursoFisico.id, 'view' ]">{{usoRecursoFisico.id}}</a></td>
+                <td>{{usoRecursoFisico.registroFechaInicio | date:'medium'}}</td>
+                <td>{{usoRecursoFisico.registroFechaFinal | date:'medium'}}</td>
+                <td jhiTranslate="{{'newoApp13App.TipoIniciod.' + usoRecursoFisico.tipoRegistro}}">{{usoRecursoFisico.tipoRegistro}}</td>
+                <td>
+                    <div *ngIf="usoRecursoFisico.recurso">
+                        <a [routerLink]="['/recursos-fisicos', usoRecursoFisico.recurso?.id, 'view' ]" >{{usoRecursoFisico.recurso?.recurso}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="usoRecursoFisico.miembro">
+                        <a [routerLink]="['/miembros', usoRecursoFisico.miembro?.id, 'view' ]" >{{usoRecursoFisico.miembro?.identificacion}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/uso-recurso-fisico', usoRecursoFisico.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/uso-recurso-fisico', usoRecursoFisico.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/uso-recurso-fisico', { outlets: { popup: usoRecursoFisico.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.perfilEquipoEmpresa.home.title">Perfil Equipo Empresas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-perfil-equipo-empresa" [routerLink]="['/perfil-equipo-empresa/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.perfilEquipoEmpresa.home.createLabel">
+            Create a new Perfil Equipo Empresa
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.perfilEquipoEmpresa.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="perfilEquipoEmpresas?.length === 0">
+        <span jhiTranslate="newoApp13App.perfilEquipoEmpresa.home.notFound">No perfilEquipoEmpresas found</span>
+    </div>
+    <div class="table-responsive" *ngIf="perfilEquipoEmpresas?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="biografia"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.biografia">Biografia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="foto1"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.foto1">Foto 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="foto2"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.foto2">Foto 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fot3"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.fot3">Fot 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="conocimientosQueDomina"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.conocimientosQueDomina">Conocimientos Que Domina</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="temasDeInteres"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.temasDeInteres">Temas De Interes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="facebook"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.facebook">Facebook</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instagram"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.instagram">Instagram</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idGoogle"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.idGoogle">Id Google</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="twiter"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.twiter">Twiter</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="empresa.razonSocial"><span jhiTranslate="newoApp13App.perfilEquipoEmpresa.empresa">Empresa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let perfilEquipoEmpresa of perfilEquipoEmpresas ;trackBy: trackId">
+                <td><a [routerLink]="['/perfil-equipo-empresa', perfilEquipoEmpresa.id, 'view' ]">{{perfilEquipoEmpresa.id}}</a></td>
+                <td>{{perfilEquipoEmpresa.biografia}}</td>
+                <td>
+                    <a *ngIf="perfilEquipoEmpresa.foto1" (click)="openFile(perfilEquipoEmpresa.foto1ContentType, perfilEquipoEmpresa.foto1)">
+                        <img [src]="'data:' + perfilEquipoEmpresa.foto1ContentType + ';base64,' + perfilEquipoEmpresa.foto1" style="max-height: 30px;" alt="perfilEquipoEmpresa image"/>
+                    </a>
+                    <span *ngIf="perfilEquipoEmpresa.foto1">{{perfilEquipoEmpresa.foto1ContentType}}, {{byteSize(perfilEquipoEmpresa.foto1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="perfilEquipoEmpresa.foto2" (click)="openFile(perfilEquipoEmpresa.foto2ContentType, perfilEquipoEmpresa.foto2)">
+                        <img [src]="'data:' + perfilEquipoEmpresa.foto2ContentType + ';base64,' + perfilEquipoEmpresa.foto2" style="max-height: 30px;" alt="perfilEquipoEmpresa image"/>
+                    </a>
+                    <span *ngIf="perfilEquipoEmpresa.foto2">{{perfilEquipoEmpresa.foto2ContentType}}, {{byteSize(perfilEquipoEmpresa.foto2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="perfilEquipoEmpresa.fot3" (click)="openFile(perfilEquipoEmpresa.fot3ContentType, perfilEquipoEmpresa.fot3)">
+                        <img [src]="'data:' + perfilEquipoEmpresa.fot3ContentType + ';base64,' + perfilEquipoEmpresa.fot3" style="max-height: 30px;" alt="perfilEquipoEmpresa image"/>
+                    </a>
+                    <span *ngIf="perfilEquipoEmpresa.fot3">{{perfilEquipoEmpresa.fot3ContentType}}, {{byteSize(perfilEquipoEmpresa.fot3)}}</span>
+                </td>
+                <td>{{perfilEquipoEmpresa.conocimientosQueDomina}}</td>
+                <td>{{perfilEquipoEmpresa.temasDeInteres}}</td>
+                <td>{{perfilEquipoEmpresa.facebook}}</td>
+                <td>{{perfilEquipoEmpresa.instagram}}</td>
+                <td>{{perfilEquipoEmpresa.idGoogle}}</td>
+                <td>{{perfilEquipoEmpresa.twiter}}</td>
+                <td>
+                    <div *ngIf="perfilEquipoEmpresa.empresa">
+                        <a [routerLink]="['/empresa', perfilEquipoEmpresa.empresa?.id, 'view' ]" >{{perfilEquipoEmpresa.empresa?.razonSocial}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/perfil-equipo-empresa', perfilEquipoEmpresa.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/perfil-equipo-empresa', perfilEquipoEmpresa.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/perfil-equipo-empresa', { outlets: { popup: perfilEquipoEmpresa.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

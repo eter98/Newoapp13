@@ -1,0 +1,24 @@
+{
+  "newoApp13App": {
+    "margenNewoEventos": {
+      "home": {
+        "title": "Margen Newo Eventos",
+        "createLabel": "Criar novo Margen Newo Eventos",
+        "createOrEditLabel": "Criar ou editar Margen Newo Eventos",
+        "search": "Pesquisar por Margen Newo Eventos",
+        "notFound": "Nenhum Margen Newo Eventos encontrado"
+      },
+      "created": "Um novo Margen Newo Eventos foi criado com o identificador {{ param }}",
+      "updated": "Um Margen Newo Eventos foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Margen Newo Eventos foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Margen Newo Eventos {{ id }}?"
+      },
+      "detail": {
+        "title": "Margen Newo Eventos"
+      },
+      "porcentajeMargen": "Porcentaje Margen",
+      "evento": "Evento"
+    }
+  }
+}

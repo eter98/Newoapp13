@@ -1,0 +1,96 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.entradaMiembros.home.title">Entrada Miembros</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-entrada-miembros" [routerLink]="['/entrada-miembros/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.entradaMiembros.home.createLabel">
+            Create a new Entrada Miembros
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.entradaMiembros.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="entradaMiembros?.length === 0">
+        <span jhiTranslate="newoApp13App.entradaMiembros.home.notFound">No entradaMiembros found</span>
+    </div>
+    <div class="table-responsive" *ngIf="entradaMiembros?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="registroFecha"><span jhiTranslate="newoApp13App.entradaMiembros.registroFecha">Registro Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoEntrada"><span jhiTranslate="newoApp13App.entradaMiembros.tipoEntrada">Tipo Entrada</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoIngreso"><span jhiTranslate="newoApp13App.entradaMiembros.tipoIngreso">Tipo Ingreso</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tiempoMaximo"><span jhiTranslate="newoApp13App.entradaMiembros.tiempoMaximo">Tiempo Maximo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miembro.identificacion"><span jhiTranslate="newoApp13App.entradaMiembros.miembro">Miembro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="espacio.nombre"><span jhiTranslate="newoApp13App.entradaMiembros.espacio">Espacio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="espacioReserva.nombre"><span jhiTranslate="newoApp13App.entradaMiembros.espacioReserva">Espacio Reserva</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let entradaMiembros of entradaMiembros ;trackBy: trackId">
+                <td><a [routerLink]="['/entrada-miembros', entradaMiembros.id, 'view' ]">{{entradaMiembros.id}}</a></td>
+                <td>{{entradaMiembros.registroFecha | date:'medium'}}</td>
+                <td jhiTranslate="{{'newoApp13App.TipoEntradad.' + entradaMiembros.tipoEntrada}}">{{entradaMiembros.tipoEntrada}}</td>
+                <td jhiTranslate="{{'newoApp13App.TipoIngresod.' + entradaMiembros.tipoIngreso}}">{{entradaMiembros.tipoIngreso}}</td>
+                <td>{{entradaMiembros.tiempoMaximo}}</td>
+                <td>
+                    <div *ngIf="entradaMiembros.miembro">
+                        <a [routerLink]="['/miembros', entradaMiembros.miembro?.id, 'view' ]" >{{entradaMiembros.miembro?.identificacion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="entradaMiembros.espacio">
+                        <a [routerLink]="['/espacio-libre', entradaMiembros.espacio?.id, 'view' ]" >{{entradaMiembros.espacio?.nombre}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="entradaMiembros.espacioReserva">
+                        <a [routerLink]="['/espacios-reserva', entradaMiembros.espacioReserva?.id, 'view' ]" >{{entradaMiembros.espacioReserva?.nombre}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/entrada-miembros', entradaMiembros.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/entrada-miembros', entradaMiembros.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/entrada-miembros', { outlets: { popup: entradaMiembros.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

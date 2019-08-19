@@ -1,0 +1,25 @@
+{
+  "newoApp13App": {
+    "miembrosEquipoEmpresas": {
+      "home": {
+        "title": "Miembros Equipo Empresas",
+        "createLabel": "Criar novo Miembros Equipo Empresas",
+        "createOrEditLabel": "Criar ou editar Miembros Equipo Empresas",
+        "search": "Pesquisar por Miembros Equipo Empresas",
+        "notFound": "Nenhum Miembros Equipo Empresas encontrado"
+      },
+      "created": "Um novo Miembros Equipo Empresas foi criado com o identificador {{ param }}",
+      "updated": "Um Miembros Equipo Empresas foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Miembros Equipo Empresas foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Miembros Equipo Empresas {{ id }}?"
+      },
+      "detail": {
+        "title": "Miembros Equipo Empresas"
+      },
+      "empresa": "Empresa",
+      "equipo": "Equipo",
+      "miembro": "Miembro"
+    }
+  }
+}

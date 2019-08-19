@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="grupos">
+            <h2><span jhiTranslate="newoApp13App.grupos.detail.title">Grupos</span> {{grupos.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoApp13App.grupos.nombreGrupo">Nombre Grupo</span></dt>
+                <dd>
+                    <span>{{grupos.nombreGrupo}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.instagram">Instagram</span></dt>
+                <dd>
+                    <span>{{grupos.instagram}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.facebook">Facebook</span></dt>
+                <dd>
+                    <span>{{grupos.facebook}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.twiter">Twiter</span></dt>
+                <dd>
+                    <span>{{grupos.twiter}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.linkedIn">Linked In</span></dt>
+                <dd>
+                    <span>{{grupos.linkedIn}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.tipoGrupo">Tipo Grupo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoApp13App.TipoGrupod.' + grupos.tipoGrupo}}">{{grupos.tipoGrupo}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.tipoConsumo">Tipo Consumo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoApp13App.TipoConsumod.' + grupos.tipoConsumo}}">{{grupos.tipoConsumo}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.valorSuscripcion">Valor Suscripcion</span></dt>
+                <dd>
+                    <span>{{grupos.valorSuscripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.impuesto">Impuesto</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoApp13App.Impuestod.' + grupos.impuesto}}">{{grupos.impuesto}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.reglasGrupo">Reglas Grupo</span></dt>
+                <dd>
+                    <span>{{grupos.reglasGrupo}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.audio">Audio</span></dt>
+                <dd>
+                    <div *ngIf="grupos.audio">
+                        <a (click)="openFile(grupos.audioContentType, grupos.audio)" jhiTranslate="entity.action.open">open</a>
+                        {{grupos.audioContentType}}, {{byteSize(grupos.audio)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.video">Video</span></dt>
+                <dd>
+                    <div *ngIf="grupos.video">
+                        <a (click)="openFile(grupos.videoContentType, grupos.video)" jhiTranslate="entity.action.open">open</a>
+                        {{grupos.videoContentType}}, {{byteSize(grupos.video)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.imagen1">Imagen 1</span></dt>
+                <dd>
+                    <div *ngIf="grupos.imagen1">
+                        <a (click)="openFile(grupos.imagen1ContentType, grupos.imagen1)">
+                            <img [src]="'data:' + grupos.imagen1ContentType + ';base64,' + grupos.imagen1" style="max-width: 100%;" alt="grupos image"/>
+                        </a>
+                        {{grupos.imagen1ContentType}}, {{byteSize(grupos.imagen1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.imagen2">Imagen 2</span></dt>
+                <dd>
+                    <div *ngIf="grupos.imagen2">
+                        <a (click)="openFile(grupos.imagen2ContentType, grupos.imagen2)">
+                            <img [src]="'data:' + grupos.imagen2ContentType + ';base64,' + grupos.imagen2" style="max-width: 100%;" alt="grupos image"/>
+                        </a>
+                        {{grupos.imagen2ContentType}}, {{byteSize(grupos.imagen2)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.banner">Banner</span></dt>
+                <dd>
+                    <div *ngIf="grupos.banner">
+                        <a (click)="openFile(grupos.bannerContentType, grupos.banner)">
+                            <img [src]="'data:' + grupos.bannerContentType + ';base64,' + grupos.banner" style="max-width: 100%;" alt="grupos image"/>
+                        </a>
+                        {{grupos.bannerContentType}}, {{byteSize(grupos.banner)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.categoriaGrupo">Categoria Grupo</span></dt>
+                <dd>
+                    <div *ngIf="grupos.categoriaGrupo">
+                        <a [routerLink]="['/categoria-contenidos', grupos.categoriaGrupo?.id, 'view']">{{grupos.categoriaGrupo?.categoria}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.grupos.evento">Evento</span></dt>
+                <dd>
+                    <div *ngIf="grupos.evento">
+                        <a [routerLink]="['/evento', grupos.evento?.id, 'view']">{{grupos.evento?.nombreEvento}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/grupos', grupos.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
