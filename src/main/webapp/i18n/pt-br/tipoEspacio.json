@@ -1,0 +1,23 @@
+{
+  "newoApp13App": {
+    "tipoEspacio": {
+      "home": {
+        "title": "Tipo Espacios",
+        "createLabel": "Criar novo Tipo Espacio",
+        "createOrEditLabel": "Criar ou editar Tipo Espacio",
+        "search": "Pesquisar por Tipo Espacio",
+        "notFound": "Nenhum Tipo Espacio encontrado"
+      },
+      "created": "Um novo Tipo Espacio foi criado com o identificador {{ param }}",
+      "updated": "Um Tipo Espacio foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tipo Espacio foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tipo Espacio {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Espacio"
+      },
+      "tipoEspacio": "Tipo Espacio"
+    }
+  }
+}

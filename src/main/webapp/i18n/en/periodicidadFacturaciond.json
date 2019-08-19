@@ -1,0 +1,12 @@
+{
+  "newoApp13App": {
+    "PeriodicidadFacturaciond": {
+      "null": "",
+      "SEMANAL": "SEMANAL",
+      "QUINCENAL": "QUINCENAL",
+      "MENSUAL": "MENSUAL",
+      "BIMESTRAL": "BIMESTRAL",
+      "TRIMESTRAL": "TRIMESTRAL"
+    }
+  }
+}

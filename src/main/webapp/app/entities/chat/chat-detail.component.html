@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chat">
+            <h2><span jhiTranslate="newoApp13App.chat.detail.title">Chat</span> {{chat.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoApp13App.chat.mensaje">Mensaje</span></dt>
+                <dd>
+                    <span>{{chat.mensaje}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.chat.sender">Sender</span></dt>
+                <dd>
+                    <span>{{chat.sender}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.chat.read">Read</span></dt>
+                <dd>
+                    <span>{{chat.read}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.chat.delivered">Delivered</span></dt>
+                <dd>
+                    <span>{{chat.delivered}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.chat.sent">Sent</span></dt>
+                <dd>
+                    <span>{{chat.sent}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.chat.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{chat.fecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.chat.chatsListado">Chats Listado</span></dt>
+                <dd>
+                    <div *ngIf="chat.chatsListado">
+                        <a [routerLink]="['/chats-listado', chat.chatsListado?.id, 'view']">{{chat.chatsListado?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.chat.de">De</span></dt>
+                <dd>
+                    <div *ngIf="chat.de">
+                        <a [routerLink]="['/miembros', chat.de?.id, 'view']">{{chat.de?.identificacion}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.chat.para">Para</span></dt>
+                <dd>
+                    <div *ngIf="chat.para">
+                        <a [routerLink]="['/miembros', chat.para?.id, 'view']">{{chat.para?.identificacion}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chat', chat.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

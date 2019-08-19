@@ -1,0 +1,23 @@
+{
+  "newoApp13App": {
+    "categoriaContenidos": {
+      "home": {
+        "title": "Categoria Contenidos",
+        "createLabel": "Criar novo Categoria Contenidos",
+        "createOrEditLabel": "Criar ou editar Categoria Contenidos",
+        "search": "Pesquisar por Categoria Contenidos",
+        "notFound": "Nenhum Categoria Contenidos encontrado"
+      },
+      "created": "Um novo Categoria Contenidos foi criado com o identificador {{ param }}",
+      "updated": "Um Categoria Contenidos foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Categoria Contenidos foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Categoria Contenidos {{ id }}?"
+      },
+      "detail": {
+        "title": "Categoria Contenidos"
+      },
+      "categoria": "Categoria"
+    }
+  }
+}

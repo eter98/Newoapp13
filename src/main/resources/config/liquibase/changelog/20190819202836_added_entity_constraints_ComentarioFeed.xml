@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ComentarioFeed.
+    -->
+    <changeSet id="20190819202836-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="feed_id"
+                                 baseTableName="comentario_feed"
+                                 constraintName="fk_comentario_feed_feed_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feed"/>
+
+        <addForeignKeyConstraint baseColumnNames="miembro_comenta_id"
+                                 baseTableName="comentario_feed"
+                                 constraintName="fk_comentario_feed_miembro_comenta_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="miembros"/>
+
+    </changeSet>
+</databaseChangeLog>

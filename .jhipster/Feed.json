@@ -1,0 +1,75 @@
+{
+    "name": "Feed",
+    "fields": [
+        {
+            "fieldName": "titulo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "imagen1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "imagen2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "tipoContenido",
+            "fieldType": "Categoriad",
+            "fieldValues": "GENERAL,DE_GRUPO,CORPORATIVO,INSTITUCIONAL,INTERNO"
+        },
+        {
+            "fieldName": "contenido",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "feed",
+            "relationshipName": "miembro",
+            "otherEntityField": "identificacion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "categoriaContenidos",
+            "otherEntityRelationshipName": "feed",
+            "relationshipName": "categoriaFeed",
+            "otherEntityField": "categoria"
+        }
+    ],
+    "changelogDate": "20190819202835",
+    "entityTableName": "feed",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

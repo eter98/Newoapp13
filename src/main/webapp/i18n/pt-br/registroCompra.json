@@ -1,0 +1,27 @@
+{
+  "newoApp13App": {
+    "registroCompra": {
+      "home": {
+        "title": "Registro Compras",
+        "createLabel": "Criar novo Registro Compra",
+        "createOrEditLabel": "Criar ou editar Registro Compra",
+        "search": "Pesquisar por Registro Compra",
+        "notFound": "Nenhum Registro Compra encontrado"
+      },
+      "created": "Um novo Registro Compra foi criado com o identificador {{ param }}",
+      "updated": "Um Registro Compra foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Registro Compra foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Registro Compra {{ id }}?"
+      },
+      "detail": {
+        "title": "Registro Compra"
+      },
+      "valor": "Valor",
+      "fechaRegistro": "Fecha Registro",
+      "idTransaccion": "Id Transaccion",
+      "miembro": "Miembro",
+      "tipoRegistro": "Tipo Registro"
+    }
+  }
+}

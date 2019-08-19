@@ -1,0 +1,30 @@
+{
+    "name": "HostSede",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "sedes",
+            "otherEntityRelationshipName": "hostSede",
+            "relationshipName": "sede",
+            "otherEntityField": "nombreSede"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "hostSede",
+            "relationshipName": "miembro",
+            "otherEntityField": "identificacion"
+        }
+    ],
+    "changelogDate": "20190819202817",
+    "entityTableName": "host_sede",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

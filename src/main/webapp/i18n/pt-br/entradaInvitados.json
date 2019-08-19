@@ -1,0 +1,30 @@
+{
+  "newoApp13App": {
+    "entradaInvitados": {
+      "home": {
+        "title": "Entrada Invitados",
+        "createLabel": "Criar novo Entrada Invitados",
+        "createOrEditLabel": "Criar ou editar Entrada Invitados",
+        "search": "Pesquisar por Entrada Invitados",
+        "notFound": "Nenhum Entrada Invitados encontrado"
+      },
+      "created": "Um novo Entrada Invitados foi criado com o identificador {{ param }}",
+      "updated": "Um Entrada Invitados foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Entrada Invitados foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Entrada Invitados {{ id }}?"
+      },
+      "detail": {
+        "title": "Entrada Invitados"
+      },
+      "registroFecha": "Registro Fecha",
+      "tipoEntrada": "Tipo Entrada",
+      "tipoIngreso": "Tipo Ingreso",
+      "tiempoMaximo": "Tiempo Maximo",
+      "espacio": "Espacio",
+      "oficina": "Oficina",
+      "espacioReserva": "Espacio Reserva",
+      "invitado": "Invitado"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "newoApp13App": {
+    "hostSede": {
+      "home": {
+        "title": "Host Sedes",
+        "createLabel": "Criar novo Host Sede",
+        "createOrEditLabel": "Criar ou editar Host Sede",
+        "search": "Pesquisar por Host Sede",
+        "notFound": "Nenhum Host Sede encontrado"
+      },
+      "created": "Um novo Host Sede foi criado com o identificador {{ param }}",
+      "updated": "Um Host Sede foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Host Sede foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Host Sede {{ id }}?"
+      },
+      "detail": {
+        "title": "Host Sede"
+      },
+      "sede": "Sede",
+      "miembro": "Miembro"
+    }
+  }
+}

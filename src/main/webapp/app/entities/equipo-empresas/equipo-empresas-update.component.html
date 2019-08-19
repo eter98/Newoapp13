@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-equipo-empresas-heading" jhiTranslate="newoApp13App.equipoEmpresas.home.createOrEditLabel">Create or edit a Equipo Empresas</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.nombre" for="field_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="field_nombre"
+                           formControlName="nombre"/>
+                    <div *ngIf="editForm.get('nombre').invalid && (editForm.get('nombre').dirty || editForm.get('nombre').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombre').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.telefono" for="field_telefono">Telefono</label>
+                    <input type="text" class="form-control" name="telefono" id="field_telefono"
+                           formControlName="telefono"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.correo" for="field_correo">Correo</label>
+                    <input type="text" class="form-control" name="correo" id="field_correo"
+                           formControlName="correo"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.direccion" for="field_direccion">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" id="field_direccion"
+                           formControlName="direccion"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.descripcion" for="field_descripcion">Descripcion</label>
+                    <textarea class="form-control" name="descripcion" id="field_descripcion"
+                              formControlName="descripcion"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.logo" for="field_logo">Logo</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('logoContentType').value + ';base64,' + editForm.get('logo').value" style="max-height: 100px;" *ngIf="editForm.get('logo').value" alt="equipoEmpresas image"/>
+                        <div *ngIf="editForm.get('logo').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('logoContentType').value}}, {{byteSize(editForm.get('logo').value)}}</span>
+                            <button type="button" (click)="clearInputImage('logo', 'logoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_logo" (change)="setFileData($event, 'logo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="logo" id="field_logo"
+                           formControlName="logo"/>
+                    <input type="hidden" class="form-control" name="logoContentType" id="field_logoContentType"
+                           formControlName="logoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.paginaWeb" for="field_paginaWeb">Pagina Web</label>
+                    <input type="text" class="form-control" name="paginaWeb" id="field_paginaWeb"
+                           formControlName="paginaWeb"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.conocimientosQueDomina" for="field_conocimientosQueDomina">Conocimientos Que Domina</label>
+                    <input type="text" class="form-control" name="conocimientosQueDomina" id="field_conocimientosQueDomina"
+                           formControlName="conocimientosQueDomina"/>
+                    <div *ngIf="editForm.get('conocimientosQueDomina').invalid && (editForm.get('conocimientosQueDomina').dirty || editForm.get('conocimientosQueDomina').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('conocimientosQueDomina').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.temasDeInteres" for="field_temasDeInteres">Temas De Interes</label>
+                    <input type="text" class="form-control" name="temasDeInteres" id="field_temasDeInteres"
+                           formControlName="temasDeInteres"/>
+                    <div *ngIf="editForm.get('temasDeInteres').invalid && (editForm.get('temasDeInteres').dirty || editForm.get('temasDeInteres').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('temasDeInteres').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoApp13App.equipoEmpresas.empresa" for="field_empresa">Empresa</label>
+                    <select class="form-control" id="field_empresa" name="empresa" formControlName="empresa">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="empresaOption.id === editForm.get('empresa').value?.id ? editForm.get('empresa').value : empresaOption" *ngFor="let empresaOption of empresas; trackBy: trackEmpresaById">{{empresaOption.razonSocial}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
