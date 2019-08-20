@@ -1,0 +1,11 @@
+id;registro_fecha;tipo_entrada;tipo_ingreso;tiempo_maximo
+1;2019-08-19T21:27:47;SALIDA;Espacio_Libre;false
+2;2019-08-19T18:44:56;SALIDA;Espacio_Libre;false
+3;2019-08-19T22:35:33;INGRESO;Oficina;false
+4;2019-08-20T00:18:46;SALIDA;Espacio_Libre;true
+5;2019-08-20T13:27:34;SALIDA;Reserva;true
+6;2019-08-19T19:42:42;SALIDA;Espacio_Libre;false
+7;2019-08-20T01:26:20;INGRESO;Reserva;false
+8;2019-08-19T19:06:26;SALIDA;Espacio_Libre;false
+9;2019-08-19T15:05:17;SALIDA;Reserva;false
+10;2019-08-20T01:00:36;SALIDA;Espacio_Libre;true

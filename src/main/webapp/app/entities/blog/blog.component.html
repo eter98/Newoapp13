@@ -1,0 +1,134 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.blog.home.title">Blogs</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-blog" [routerLink]="['/blog/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.blog.home.createLabel">
+            Create a new Blog
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.blog.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="blogs?.length === 0">
+        <span jhiTranslate="newoApp13App.blog.home.notFound">No blogs found</span>
+    </div>
+    <div class="table-responsive" *ngIf="blogs?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="titulo"><span jhiTranslate="newoApp13App.blog.titulo">Titulo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="descripcion"><span jhiTranslate="newoApp13App.blog.descripcion">Descripcion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoContenido"><span jhiTranslate="newoApp13App.blog.tipoContenido">Tipo Contenido</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contenido"><span jhiTranslate="newoApp13App.blog.contenido">Contenido</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fecha"><span jhiTranslate="newoApp13App.blog.fecha">Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="audio"><span jhiTranslate="newoApp13App.blog.audio">Audio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="video"><span jhiTranslate="newoApp13App.blog.video">Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen1"><span jhiTranslate="newoApp13App.blog.imagen1">Imagen 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen2"><span jhiTranslate="newoApp13App.blog.imagen2">Imagen 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="banner"><span jhiTranslate="newoApp13App.blog.banner">Banner</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estadoPublicacion"><span jhiTranslate="newoApp13App.blog.estadoPublicacion">Estado Publicacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoConsumo"><span jhiTranslate="newoApp13App.blog.tipoConsumo">Tipo Consumo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="valor"><span jhiTranslate="newoApp13App.blog.valor">Valor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="impuesto"><span jhiTranslate="newoApp13App.blog.impuesto">Impuesto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miembro.identificacion"><span jhiTranslate="newoApp13App.blog.miembro">Miembro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categoriaBlog.categoria"><span jhiTranslate="newoApp13App.blog.categoriaBlog">Categoria Blog</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="grupos.nombreGrupo"><span jhiTranslate="newoApp13App.blog.grupos">Grupos</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let blog of blogs ;trackBy: trackId">
+                <td><a [routerLink]="['/blog', blog.id, 'view' ]">{{blog.id}}</a></td>
+                <td>{{blog.titulo}}</td>
+                <td>{{blog.descripcion}}</td>
+                <td jhiTranslate="{{'newoApp13App.Categoriad.' + blog.tipoContenido}}">{{blog.tipoContenido}}</td>
+                <td>{{blog.contenido}}</td>
+                <td>{{blog.fecha | date:'medium'}}</td>
+                <td>
+                    <a *ngIf="blog.audio" (click)="openFile(blog.audioContentType, blog.audio)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="blog.audio">{{blog.audioContentType}}, {{byteSize(blog.audio)}}</span>
+                </td>
+                <td>{{blog.video}}</td>
+                <td>
+                    <a *ngIf="blog.imagen1" (click)="openFile(blog.imagen1ContentType, blog.imagen1)">
+                        <img [src]="'data:' + blog.imagen1ContentType + ';base64,' + blog.imagen1" style="max-height: 30px;" alt="blog image"/>
+                    </a>
+                    <span *ngIf="blog.imagen1">{{blog.imagen1ContentType}}, {{byteSize(blog.imagen1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="blog.imagen2" (click)="openFile(blog.imagen2ContentType, blog.imagen2)">
+                        <img [src]="'data:' + blog.imagen2ContentType + ';base64,' + blog.imagen2" style="max-height: 30px;" alt="blog image"/>
+                    </a>
+                    <span *ngIf="blog.imagen2">{{blog.imagen2ContentType}}, {{byteSize(blog.imagen2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="blog.banner" (click)="openFile(blog.bannerContentType, blog.banner)">
+                        <img [src]="'data:' + blog.bannerContentType + ';base64,' + blog.banner" style="max-height: 30px;" alt="blog image"/>
+                    </a>
+                    <span *ngIf="blog.banner">{{blog.bannerContentType}}, {{byteSize(blog.banner)}}</span>
+                </td>
+                <td jhiTranslate="{{'newoApp13App.EstadoPublicaciond.' + blog.estadoPublicacion}}">{{blog.estadoPublicacion}}</td>
+                <td jhiTranslate="{{'newoApp13App.TipoConsumod.' + blog.tipoConsumo}}">{{blog.tipoConsumo}}</td>
+                <td>{{blog.valor}}</td>
+                <td jhiTranslate="{{'newoApp13App.Impuestod.' + blog.impuesto}}">{{blog.impuesto}}</td>
+                <td>
+                    <div *ngIf="blog.miembro">
+                        <a [routerLink]="['/miembros', blog.miembro?.id, 'view' ]" >{{blog.miembro?.identificacion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="blog.categoriaBlog">
+                        <a [routerLink]="['/categoria-contenidos', blog.categoriaBlog?.id, 'view' ]" >{{blog.categoriaBlog?.categoria}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="blog.grupos">
+                        <a [routerLink]="['/grupos', blog.grupos?.id, 'view' ]" >{{blog.grupos?.nombreGrupo}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/blog', blog.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/blog', blog.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/blog', { outlets: { popup: blog.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

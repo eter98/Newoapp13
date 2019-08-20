@@ -1,0 +1,43 @@
+{
+    "name": "RegistroCompra",
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fechaRegistro",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "idTransaccion",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "registroCompra",
+            "relationshipName": "miembro",
+            "otherEntityField": "identificacion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoRegistroCompra",
+            "otherEntityRelationshipName": "registroCompra",
+            "relationshipName": "tipoRegistro",
+            "otherEntityField": "descripcion"
+        }
+    ],
+    "changelogDate": "20190820141137",
+    "entityTableName": "registro_compra",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

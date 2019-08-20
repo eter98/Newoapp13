@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.registroCompra.home.title">Registro Compras</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-registro-compra" [routerLink]="['/registro-compra/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.registroCompra.home.createLabel">
+            Create a new Registro Compra
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.registroCompra.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="registroCompras?.length === 0">
+        <span jhiTranslate="newoApp13App.registroCompra.home.notFound">No registroCompras found</span>
+    </div>
+    <div class="table-responsive" *ngIf="registroCompras?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="valor"><span jhiTranslate="newoApp13App.registroCompra.valor">Valor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaRegistro"><span jhiTranslate="newoApp13App.registroCompra.fechaRegistro">Fecha Registro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idTransaccion"><span jhiTranslate="newoApp13App.registroCompra.idTransaccion">Id Transaccion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miembro.identificacion"><span jhiTranslate="newoApp13App.registroCompra.miembro">Miembro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoRegistro.descripcion"><span jhiTranslate="newoApp13App.registroCompra.tipoRegistro">Tipo Registro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let registroCompra of registroCompras ;trackBy: trackId">
+                <td><a [routerLink]="['/registro-compra', registroCompra.id, 'view' ]">{{registroCompra.id}}</a></td>
+                <td>{{registroCompra.valor}}</td>
+                <td>{{registroCompra.fechaRegistro | date:'medium'}}</td>
+                <td>{{registroCompra.idTransaccion}}</td>
+                <td>
+                    <div *ngIf="registroCompra.miembro">
+                        <a [routerLink]="['/miembros', registroCompra.miembro?.id, 'view' ]" >{{registroCompra.miembro?.identificacion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="registroCompra.tipoRegistro">
+                        <a [routerLink]="['/tipo-registro-compra', registroCompra.tipoRegistro?.id, 'view' ]" >{{registroCompra.tipoRegistro?.descripcion}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/registro-compra', registroCompra.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/registro-compra', registroCompra.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/registro-compra', { outlets: { popup: registroCompra.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

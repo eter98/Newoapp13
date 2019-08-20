@@ -1,0 +1,32 @@
+{
+  "newoApp13App": {
+    "chatsListado": {
+      "home": {
+        "title": "Chats Listados",
+        "createLabel": "Create a new Chats Listado",
+        "createOrEditLabel": "Create or edit a Chats Listado",
+        "search": "Search for Chats Listado",
+        "notFound": "No Chats Listados found"
+      },
+      "created": "A new Chats Listado is created with identifier {{ param }}",
+      "updated": "A Chats Listado is updated with identifier {{ param }}",
+      "deleted": "A Chats Listado is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Chats Listado {{ id }}?"
+      },
+      "detail": {
+        "title": "Chats Listado"
+      },
+      "descripcion": "Descripcion",
+      "estatus": "Estatus",
+      "count": "Count",
+      "badge": "Badge",
+      "time": "Time",
+      "sendTime": "Send Time",
+      "grupo": "Grupo",
+      "propietario": "Propietario",
+      "destinatario": "Destinatario",
+      "chat": "Chat"
+    }
+  }
+}

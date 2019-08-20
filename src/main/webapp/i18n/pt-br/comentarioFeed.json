@@ -1,0 +1,28 @@
+{
+  "newoApp13App": {
+    "comentarioFeed": {
+      "home": {
+        "title": "Comentario Feeds",
+        "createLabel": "Criar novo Comentario Feed",
+        "createOrEditLabel": "Criar ou editar Comentario Feed",
+        "search": "Pesquisar por Comentario Feed",
+        "notFound": "Nenhum Comentario Feed encontrado"
+      },
+      "created": "Um novo Comentario Feed foi criado com o identificador {{ param }}",
+      "updated": "Um Comentario Feed foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Comentario Feed foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Comentario Feed {{ id }}?"
+      },
+      "detail": {
+        "title": "Comentario Feed"
+      },
+      "comentario": "Comentario",
+      "fecha": "Fecha",
+      "meGusta": "Me Gusta",
+      "seguir": "Seguir",
+      "feed": "Feed",
+      "miembroComenta": "Miembro Comenta"
+    }
+  }
+}

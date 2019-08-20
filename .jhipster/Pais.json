@@ -1,0 +1,23 @@
+{
+    "name": "Pais",
+    "fields": [
+        {
+            "fieldName": "nombrePais",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190820141148",
+    "entityTableName": "pais",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

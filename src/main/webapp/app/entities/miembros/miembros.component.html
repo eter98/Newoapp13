@@ -1,0 +1,135 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.miembros.home.title">Miembros</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-miembros" [routerLink]="['/miembros/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.miembros.home.createLabel">
+            Create a new Miembros
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.miembros.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="miembros?.length === 0">
+        <span jhiTranslate="newoApp13App.miembros.home.notFound">No miembros found</span>
+    </div>
+    <div class="table-responsive" *ngIf="miembros?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoDocumento"><span jhiTranslate="newoApp13App.miembros.tipoDocumento">Tipo Documento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="identificacion"><span jhiTranslate="newoApp13App.miembros.identificacion">Identificacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaNacimiento"><span jhiTranslate="newoApp13App.miembros.fechaNacimiento">Fecha Nacimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaRegistro"><span jhiTranslate="newoApp13App.miembros.fechaRegistro">Fecha Registro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="genero"><span jhiTranslate="newoApp13App.miembros.genero">Genero</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="celular"><span jhiTranslate="newoApp13App.miembros.celular">Celular</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="biografia"><span jhiTranslate="newoApp13App.miembros.biografia">Biografia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="foto1"><span jhiTranslate="newoApp13App.miembros.foto1">Foto 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="foto2"><span jhiTranslate="newoApp13App.miembros.foto2">Foto 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fot3"><span jhiTranslate="newoApp13App.miembros.fot3">Fot 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="conocimientosQueDomina"><span jhiTranslate="newoApp13App.miembros.conocimientosQueDomina">Conocimientos Que Domina</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="temasDeInteres"><span jhiTranslate="newoApp13App.miembros.temasDeInteres">Temas De Interes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="facebook"><span jhiTranslate="newoApp13App.miembros.facebook">Facebook</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instagram"><span jhiTranslate="newoApp13App.miembros.instagram">Instagram</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idGoogle"><span jhiTranslate="newoApp13App.miembros.idGoogle">Id Google</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="twiter"><span jhiTranslate="newoApp13App.miembros.twiter">Twiter</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="derechosDeCompra"><span jhiTranslate="newoApp13App.miembros.derechosDeCompra">Derechos De Compra</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="accesoIlimitado"><span jhiTranslate="newoApp13App.miembros.accesoIlimitado">Acceso Ilimitado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="aliado"><span jhiTranslate="newoApp13App.miembros.aliado">Aliado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="host"><span jhiTranslate="newoApp13App.miembros.host">Host</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miembro.login"><span jhiTranslate="newoApp13App.miembros.miembro">Miembro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nacionalidad.nombrePais"><span jhiTranslate="newoApp13App.miembros.nacionalidad">Nacionalidad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let miembros of miembros ;trackBy: trackId">
+                <td><a [routerLink]="['/miembros', miembros.id, 'view' ]">{{miembros.id}}</a></td>
+                <td jhiTranslate="{{'newoApp13App.TipoDocumentod.' + miembros.tipoDocumento}}">{{miembros.tipoDocumento}}</td>
+                <td>{{miembros.identificacion}}</td>
+                <td>{{miembros.fechaNacimiento | date:'mediumDate'}}</td>
+                <td>{{miembros.fechaRegistro | date:'medium'}}</td>
+                <td jhiTranslate="{{'newoApp13App.Generod.' + miembros.genero}}">{{miembros.genero}}</td>
+                <td>{{miembros.celular}}</td>
+                <td>{{miembros.biografia}}</td>
+                <td>
+                    <a *ngIf="miembros.foto1" (click)="openFile(miembros.foto1ContentType, miembros.foto1)">
+                        <img [src]="'data:' + miembros.foto1ContentType + ';base64,' + miembros.foto1" style="max-height: 30px;" alt="miembros image"/>
+                    </a>
+                    <span *ngIf="miembros.foto1">{{miembros.foto1ContentType}}, {{byteSize(miembros.foto1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="miembros.foto2" (click)="openFile(miembros.foto2ContentType, miembros.foto2)">
+                        <img [src]="'data:' + miembros.foto2ContentType + ';base64,' + miembros.foto2" style="max-height: 30px;" alt="miembros image"/>
+                    </a>
+                    <span *ngIf="miembros.foto2">{{miembros.foto2ContentType}}, {{byteSize(miembros.foto2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="miembros.fot3" (click)="openFile(miembros.fot3ContentType, miembros.fot3)">
+                        <img [src]="'data:' + miembros.fot3ContentType + ';base64,' + miembros.fot3" style="max-height: 30px;" alt="miembros image"/>
+                    </a>
+                    <span *ngIf="miembros.fot3">{{miembros.fot3ContentType}}, {{byteSize(miembros.fot3)}}</span>
+                </td>
+                <td>{{miembros.conocimientosQueDomina}}</td>
+                <td>{{miembros.temasDeInteres}}</td>
+                <td>{{miembros.facebook}}</td>
+                <td>{{miembros.instagram}}</td>
+                <td>{{miembros.idGoogle}}</td>
+                <td>{{miembros.twiter}}</td>
+                <td>{{miembros.derechosDeCompra}}</td>
+                <td>{{miembros.accesoIlimitado}}</td>
+                <td>{{miembros.aliado}}</td>
+                <td>{{miembros.host}}</td>
+                <td>
+                    {{miembros.miembro?.login}}
+                </td>
+                <td>
+                    <div *ngIf="miembros.nacionalidad">
+                        <a [routerLink]="['/pais', miembros.nacionalidad?.id, 'view' ]" >{{miembros.nacionalidad?.nombrePais}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/miembros', miembros.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/miembros', miembros.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/miembros', { outlets: { popup: miembros.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

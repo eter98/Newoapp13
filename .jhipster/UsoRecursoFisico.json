@@ -1,0 +1,40 @@
+{
+    "name": "UsoRecursoFisico",
+    "fields": [
+        {
+            "fieldName": "registroFechaInicio",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "tipoRegistro",
+            "fieldType": "TipoIniciod",
+            "fieldValues": "Inicio,Fin"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "recursosFisicos",
+            "otherEntityRelationshipName": "usoRecursoFisico",
+            "relationshipName": "recurso",
+            "otherEntityField": "recurso"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "usoRecursoFisico",
+            "relationshipName": "miembro",
+            "otherEntityField": "identificacion"
+        }
+    ],
+    "changelogDate": "20190820141201",
+    "entityTableName": "uso_recurso_fisico",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

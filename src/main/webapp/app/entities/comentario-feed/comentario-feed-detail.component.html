@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="comentarioFeed">
+            <h2><span jhiTranslate="newoApp13App.comentarioFeed.detail.title">Comentario Feed</span> {{comentarioFeed.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoApp13App.comentarioFeed.comentario">Comentario</span></dt>
+                <dd>
+                    <span>{{comentarioFeed.comentario}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.comentarioFeed.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{comentarioFeed.fecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.comentarioFeed.meGusta">Me Gusta</span></dt>
+                <dd>
+                    <span>{{comentarioFeed.meGusta}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.comentarioFeed.seguir">Seguir</span></dt>
+                <dd>
+                    <span>{{comentarioFeed.seguir}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.comentarioFeed.feed">Feed</span></dt>
+                <dd>
+                    <div *ngIf="comentarioFeed.feed">
+                        <a [routerLink]="['/feed', comentarioFeed.feed?.id, 'view']">{{comentarioFeed.feed?.titulo}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.comentarioFeed.miembroComenta">Miembro Comenta</span></dt>
+                <dd>
+                    <div *ngIf="comentarioFeed.miembroComenta">
+                        <a [routerLink]="['/miembros', comentarioFeed.miembroComenta?.id, 'view']">{{comentarioFeed.miembroComenta?.identificacion}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/comentario-feed', comentarioFeed.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
