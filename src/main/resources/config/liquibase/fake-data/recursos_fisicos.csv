@@ -1,0 +1,11 @@
+id;recurso;tipo;unidad_medida;valor_unitario;valor_1_h;valor_2_h;valor_3_h;valor_4_h;valor_5_h;valor_6_h;valor_7_h;valor_8_h;valor_9_h;valor_10_h;valor_11_h;valor_12_h;impuesto;foto;foto_content_type;video;video_content_type
+1;Integrated;Tiempo;parse;57191;61630;98624;55687;41473;41577;75386;42894;87146;54090;67897;69642;41186;ICO;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+2;COM deposit;Tiempo;Frozen magnetic;14284;98043;69207;51228;20625;11428;39185;76480;89567;67889;20431;77298;50780;IPOCONSUMO8;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+3;Liberian Dollar;Tiempo;port TCP monitor;69727;53565;75263;83611;46505;82138;87417;84332;20343;48509;12738;33362;28550;IVA6;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+4;XML Bridge;Tiempo;auxiliary Product;20347;20795;6697;4198;87735;47926;38940;18172;54176;74308;96806;84792;6656;IPOCONSUMO8;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+5;Buckinghamshire Administrator;Cantidad;Incredible Cotton Bike Incredible Soft Pants;60840;6871;70663;36957;37448;46423;36948;72273;4531;65672;34994;70876;92928;IVA6;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+6;invoice Berkshire Kids;Cantidad;Nevada haptic;75174;35020;80300;67747;51800;75850;14032;1462;67115;20724;62047;71323;74225;IVA19;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+7;scale Salad Reverse-engineered;Cantidad;COM New Caledonia hack;30690;47392;41497;71639;71277;27094;38621;20225;58850;31382;18537;24150;59977;IVA19;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+8;International Buckinghamshire salmon;Cantidad;deploy;82183;45077;65951;95849;79624;43108;27194;54934;69235;53325;26406;63676;93906;IPOCONSUMO8;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+9;Ridge;Cantidad;compressing Handcrafted Soft Bacon;82164;77802;46152;76085;98330;18772;78670;8838;77366;69894;74783;36834;15060;IVA6;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png
+10;Grocery;Tiempo;Manat hardware Dynamic;88811;51420;32529;73622;90096;43641;99615;66677;82541;9432;84487;74800;24900;IVA6;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png

@@ -1,0 +1,112 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="empresa">
+            <h2><span jhiTranslate="newoApp13App.empresa.detail.title">Empresa</span> {{empresa.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoApp13App.empresa.razonSocial">Razon Social</span></dt>
+                <dd>
+                    <span>{{empresa.razonSocial}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.nit">Nit</span></dt>
+                <dd>
+                    <span>{{empresa.nit}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.direccion">Direccion</span></dt>
+                <dd>
+                    <span>{{empresa.direccion}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.telefono">Telefono</span></dt>
+                <dd>
+                    <span>{{empresa.telefono}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.correo">Correo</span></dt>
+                <dd>
+                    <span>{{empresa.correo}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.web">Web</span></dt>
+                <dd>
+                    <span>{{empresa.web}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.celular">Celular</span></dt>
+                <dd>
+                    <span>{{empresa.celular}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.biografia">Biografia</span></dt>
+                <dd>
+                    <span>{{empresa.biografia}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.imagen1">Imagen 1</span></dt>
+                <dd>
+                    <div *ngIf="empresa.imagen1">
+                        <a (click)="openFile(empresa.imagen1ContentType, empresa.imagen1)">
+                            <img [src]="'data:' + empresa.imagen1ContentType + ';base64,' + empresa.imagen1" style="max-width: 100%;" alt="empresa image"/>
+                        </a>
+                        {{empresa.imagen1ContentType}}, {{byteSize(empresa.imagen1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.imagen2">Imagen 2</span></dt>
+                <dd>
+                    <div *ngIf="empresa.imagen2">
+                        <a (click)="openFile(empresa.imagen2ContentType, empresa.imagen2)">
+                            <img [src]="'data:' + empresa.imagen2ContentType + ';base64,' + empresa.imagen2" style="max-width: 100%;" alt="empresa image"/>
+                        </a>
+                        {{empresa.imagen2ContentType}}, {{byteSize(empresa.imagen2)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.imagen3">Imagen 3</span></dt>
+                <dd>
+                    <div *ngIf="empresa.imagen3">
+                        <a (click)="openFile(empresa.imagen3ContentType, empresa.imagen3)">
+                            <img [src]="'data:' + empresa.imagen3ContentType + ';base64,' + empresa.imagen3" style="max-width: 100%;" alt="empresa image"/>
+                        </a>
+                        {{empresa.imagen3ContentType}}, {{byteSize(empresa.imagen3)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.facebook">Facebook</span></dt>
+                <dd>
+                    <span>{{empresa.facebook}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.instagram">Instagram</span></dt>
+                <dd>
+                    <span>{{empresa.instagram}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.idGoogle">Id Google</span></dt>
+                <dd>
+                    <span>{{empresa.idGoogle}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.twiter">Twiter</span></dt>
+                <dd>
+                    <span>{{empresa.twiter}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.conocimientosQueDomina">Conocimientos Que Domina</span></dt>
+                <dd>
+                    <span>{{empresa.conocimientosQueDomina}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.temasDeInteres">Temas De Interes</span></dt>
+                <dd>
+                    <span>{{empresa.temasDeInteres}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoApp13App.empresa.miembro">Miembro</span></dt>
+                <dd>
+                    <div *ngIf="empresa.miembro">
+                        <a [routerLink]="['/miembros', empresa.miembro?.id, 'view']">{{empresa.miembro?.identificacion}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/empresa', empresa.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

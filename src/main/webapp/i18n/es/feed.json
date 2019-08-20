@@ -1,0 +1,31 @@
+{
+  "newoApp13App": {
+    "feed": {
+      "home": {
+        "title": "Feeds",
+        "createLabel": "Crear nuevo Feed",
+        "createOrEditLabel": "Crear o editar Feed",
+        "search": "Search for Feed",
+        "notFound": "No Feeds found"
+      },
+      "created": "Un nuevo Feed ha sido creado con el identificador {{ param }}",
+      "updated": "Un Feed ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Feed ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Feed {{ id }}?"
+      },
+      "detail": {
+        "title": "Feed"
+      },
+      "titulo": "Titulo",
+      "descripcion": "Descripcion",
+      "imagen1": "Imagen 1",
+      "imagen2": "Imagen 2",
+      "tipoContenido": "Tipo Contenido",
+      "contenido": "Contenido",
+      "fecha": "Fecha",
+      "miembro": "Miembro",
+      "categoriaFeed": "Categoria Feed"
+    }
+  }
+}

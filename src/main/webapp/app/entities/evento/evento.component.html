@@ -1,0 +1,137 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoApp13App.evento.home.title">Eventos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-evento" [routerLink]="['/evento/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="newoApp13App.evento.home.createLabel">
+            Create a new Evento
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'newoApp13App.evento.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="eventos?.length === 0">
+        <span jhiTranslate="newoApp13App.evento.home.notFound">No eventos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="eventos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreEvento"><span jhiTranslate="newoApp13App.evento.nombreEvento">Nombre Evento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="descripcion"><span jhiTranslate="newoApp13App.evento.descripcion">Descripcion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contenido"><span jhiTranslate="newoApp13App.evento.contenido">Contenido</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="audio"><span jhiTranslate="newoApp13App.evento.audio">Audio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="video"><span jhiTranslate="newoApp13App.evento.video">Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen1"><span jhiTranslate="newoApp13App.evento.imagen1">Imagen 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen2"><span jhiTranslate="newoApp13App.evento.imagen2">Imagen 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="banner"><span jhiTranslate="newoApp13App.evento.banner">Banner</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoConsumo"><span jhiTranslate="newoApp13App.evento.tipoConsumo">Tipo Consumo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="valor"><span jhiTranslate="newoApp13App.evento.valor">Valor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="impuesto"><span jhiTranslate="newoApp13App.evento.impuesto">Impuesto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoEvento"><span jhiTranslate="newoApp13App.evento.tipoEvento">Tipo Evento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="eventoNEWO"><span jhiTranslate="newoApp13App.evento.eventoNEWO">Evento NEWO</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="web"><span jhiTranslate="newoApp13App.evento.web">Web</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categoriaEvento.categoria"><span jhiTranslate="newoApp13App.evento.categoriaEvento">Categoria Evento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="grupos.nombreGrupo"><span jhiTranslate="newoApp13App.evento.grupos">Grupos</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miembro.identificacion"><span jhiTranslate="newoApp13App.evento.miembro">Miembro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let evento of eventos ;trackBy: trackId">
+                <td><a [routerLink]="['/evento', evento.id, 'view' ]">{{evento.id}}</a></td>
+                <td>{{evento.nombreEvento}}</td>
+                <td>{{evento.descripcion}}</td>
+                <td>{{evento.contenido}}</td>
+                <td>
+                    <a *ngIf="evento.audio" (click)="openFile(evento.audioContentType, evento.audio)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="evento.audio">{{evento.audioContentType}}, {{byteSize(evento.audio)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="evento.video" (click)="openFile(evento.videoContentType, evento.video)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="evento.video">{{evento.videoContentType}}, {{byteSize(evento.video)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="evento.imagen1" (click)="openFile(evento.imagen1ContentType, evento.imagen1)">
+                        <img [src]="'data:' + evento.imagen1ContentType + ';base64,' + evento.imagen1" style="max-height: 30px;" alt="evento image"/>
+                    </a>
+                    <span *ngIf="evento.imagen1">{{evento.imagen1ContentType}}, {{byteSize(evento.imagen1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="evento.imagen2" (click)="openFile(evento.imagen2ContentType, evento.imagen2)">
+                        <img [src]="'data:' + evento.imagen2ContentType + ';base64,' + evento.imagen2" style="max-height: 30px;" alt="evento image"/>
+                    </a>
+                    <span *ngIf="evento.imagen2">{{evento.imagen2ContentType}}, {{byteSize(evento.imagen2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="evento.banner" (click)="openFile(evento.bannerContentType, evento.banner)">
+                        <img [src]="'data:' + evento.bannerContentType + ';base64,' + evento.banner" style="max-height: 30px;" alt="evento image"/>
+                    </a>
+                    <span *ngIf="evento.banner">{{evento.bannerContentType}}, {{byteSize(evento.banner)}}</span>
+                </td>
+                <td jhiTranslate="{{'newoApp13App.TipoConsumod.' + evento.tipoConsumo}}">{{evento.tipoConsumo}}</td>
+                <td>{{evento.valor}}</td>
+                <td jhiTranslate="{{'newoApp13App.Impuestod.' + evento.impuesto}}">{{evento.impuesto}}</td>
+                <td jhiTranslate="{{'newoApp13App.Categoriad.' + evento.tipoEvento}}">{{evento.tipoEvento}}</td>
+                <td>{{evento.eventoNEWO}}</td>
+                <td>{{evento.web}}</td>
+                <td>
+                    <div *ngIf="evento.categoriaEvento">
+                        <a [routerLink]="['/categoria-contenidos', evento.categoriaEvento?.id, 'view' ]" >{{evento.categoriaEvento?.categoria}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="evento.grupos">
+                        <a [routerLink]="['/grupos', evento.grupos?.id, 'view' ]" >{{evento.grupos?.nombreGrupo}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="evento.miembro">
+                        <a [routerLink]="['/miembros', evento.miembro?.id, 'view' ]" >{{evento.miembro?.identificacion}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/evento', evento.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/evento', evento.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/evento', { outlets: { popup: evento.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
